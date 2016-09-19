@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="leetcode," />
 
 
 
@@ -84,16 +84,18 @@
 
 
 
-<meta name="description" content="Stay hungry,Stay foolish.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="杂谈">
-<meta property="og:url" content="http://taolvezh.cn/tags/index.html">
+<meta name="description" content="这是一道简单的推理题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode-Nim Game解题思路">
+<meta property="og:url" content="http://taolvezh.cn/2016/09/19/nim_game/index.html">
 <meta property="og:site_name" content="一路向北">
-<meta property="og:description" content="Stay hungry,Stay foolish.">
-<meta property="og:updated_time" content="2016-08-04T14:24:17.486Z">
+<meta property="og:description" content="这是一道简单的推理题">
+<meta property="og:image" content="http://i1.piimg.com/4851/b42836db996f7dd9.jpg">
+<meta property="og:updated_time" content="2016-09-19T09:30:20.037Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="杂谈">
-<meta name="twitter:description" content="Stay hungry,Stay foolish.">
+<meta name="twitter:title" content="LeetCode-Nim Game解题思路">
+<meta name="twitter:description" content="这是一道简单的推理题">
+<meta name="twitter:image" content="http://i1.piimg.com/4851/b42836db996f7dd9.jpg">
 
 
 
@@ -114,15 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://taolvezh.cn/tags/"/>
+  <link rel="canonical" href="http://taolvezh.cn/2016/09/19/nim_game/"/>
 
-  <title>
-  
-
-  
-    标签 | 一路向北
-  
-</title>
+  <title> LeetCode-Nim Game解题思路 | 一路向北 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -153,7 +149,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-right  ">
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -278,16 +274,182 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
     
-      <div class="tag-cloud">
-        <div class="tag-cloud-title">
-            目前共计 6 个标签
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                LeetCode-Nim Game解题思路
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-19T17:06:25+08:00" content="2016-09-19">
+              2016-09-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/CS/" itemprop="url" rel="index">
+                    <span itemprop="name">CS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/19/nim_game/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/nim_game/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
         </div>
-        <div class="tag-cloud-tags">
-          <a href="/tags/algo/" style="font-size: 12px; color: #ccc">algo</a> <a href="/tags/bfs/" style="font-size: 12px; color: #ccc">bfs</a> <a href="/tags/dfs/" style="font-size: 12px; color: #ccc">dfs</a> <a href="/tags/hdu/" style="font-size: 12px; color: #ccc">hdu</a> <a href="/tags/leetcode/" style="font-size: 12px; color: #ccc">leetcode</a> <a href="/tags/杂谈/" style="font-size: 12px; color: #ccc">杂谈</a>
-        </div>
-      </div>
+      </header>
     
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这是一道简单的推理题<br><img src="http://i1.piimg.com/4851/b42836db996f7dd9.jpg" alt="enter description here"></p>
+<a id="more"></a>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>You are playing the following Nim Game with your friend: There is a heap of stones on the table, each time one of you take turns to remove 1 to 3 stones. The one who removes the last stone will be the winner. You will take the first turn to remove the stones.</p>
+<p>Both of you are very clever and have optimal strategies for the game. Write a function to determine whether you can win the game given the number of stones in the heap.</p>
+<p>For example, if there are 4 stones in the heap, then you will never win the game: no matter 1, 2, or 3 stones you remove, the last stone will always be removed by your friend.</p>
+<p>注解：<br>      你和你的朋友玩下面的NIM游戏：在桌上的一堆石头，每一次你轮流取出1到3块石头。移除最后一块石头的人将是赢家。你将首先出手取出石头。<br>你们两个都很聪明都有最佳的游戏策略。编写一个函数，确定你是否可以赢得游戏中给定的一些石头堆中的数量。<br>例如，如果有4块石头，那么你永远不会赢得游戏：无论是1，2，或3个石头你删除，最后一块石头将永远被你的朋友取走。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ol>
+<li>若石头数为1–3个，无论如何都会取胜。</li>
+<li>若石头数为4，第一轮无论取多少个石头（1–3个），最后一块石头都将是对方取走，我们暂且将4称为<strong>死亡数字</strong>。</li>
+<li>若石头数为5–7个，你可以取1–3块石头，将<strong>死亡数字</strong>（4块石头）留给对方，这样，无论如何你将取胜。</li>
+<li>若石头数为8，无论取1块，2块，还是3块石头，所剩的石头仍处于5–7块之间，对方掌握主动权，可将<strong>死亡数字</strong>（4块石头）留给你。</li>
+<li>以此类推，若石头数为4的整数倍， 则你将失败。</li>
+<li>所以，若n%4==0，游戏失败；反之则胜。</li>
+</ol>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canWinNim</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> n%<span class="number">4</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag">#leetcode</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/04/hdu1254/" rel="next" title="HDU 1254 推箱子">
+                <i class="fa fa-chevron-left"></i> HDU 1254 推箱子
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
   </div>
 
 
@@ -298,8 +460,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="tags/index.html"
-           data-title="杂谈" data-url="http://taolvezh.cn/tags/index.html">
+      <div class="ds-thread" data-thread-key="2016/09/19/nim_game/"
+           data-title="LeetCode-Nim Game解题思路" data-url="http://taolvezh.cn/2016/09/19/nim_game/">
       </div>
     
   </div>
@@ -323,8 +485,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/avatar/tx.jpg"
@@ -374,6 +545,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -470,6 +652,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
