@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="杂谈," />
+  <meta name="keywords" content="dp,poj," />
 
 
 
@@ -84,18 +84,19 @@
 
 
 
-<meta name="description" content="欢迎来到我的博客小站。">
+<meta name="description" content="动态规划(Dynamic Programming)中关于最大子序列问题的变形。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="欢迎">
-<meta property="og:url" content="http://taolvezh.cn/2016/08/04/欢迎/index.html">
+<meta property="og:title" content="POJ 2479 Maximum sum">
+<meta property="og:url" content="http://taolvezh.cn/2016/09/22/POJ 2479 Maximum sum/index.html">
 <meta property="og:site_name" content="一路向北">
-<meta property="og:description" content="欢迎来到我的博客小站。">
-<meta property="og:image" content="http://ww2.sinaimg.cn/orj480/672ea2eagw1f4qye30g4uj20qo1bf7b5.jpg">
-<meta property="og:updated_time" content="2016-08-04T13:58:54.747Z">
+<meta property="og:description" content="动态规划(Dynamic Programming)中关于最大子序列问题的变形。">
+<meta property="og:image" content="http://i2.buimg.com/4851/67651d5bd4218498.jpg">
+<meta property="og:image" content="http://i1.piimg.com/4851/db346ff2f2cb9b3b.jpg">
+<meta property="og:updated_time" content="2016-09-22T09:10:05.651Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="欢迎">
-<meta name="twitter:description" content="欢迎来到我的博客小站。">
-<meta name="twitter:image" content="http://ww2.sinaimg.cn/orj480/672ea2eagw1f4qye30g4uj20qo1bf7b5.jpg">
+<meta name="twitter:title" content="POJ 2479 Maximum sum">
+<meta name="twitter:description" content="动态规划(Dynamic Programming)中关于最大子序列问题的变形。">
+<meta name="twitter:image" content="http://i2.buimg.com/4851/67651d5bd4218498.jpg">
 
 
 
@@ -116,9 +117,9 @@
 
 
 
-  <link rel="canonical" href="http://taolvezh.cn/2016/08/04/欢迎/"/>
+  <link rel="canonical" href="http://taolvezh.cn/2016/09/22/POJ 2479 Maximum sum/"/>
 
-  <title> 欢迎 | 一路向北 </title>
+  <title> POJ 2479 Maximum sum | 一路向北 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -293,7 +294,7 @@
             
             
               
-                欢迎
+                POJ 2479 Maximum sum
               
             
           </h1>
@@ -305,8 +306,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-04T18:18:39+08:00" content="2016-08-04">
-              2016-08-04
+            <time itemprop="dateCreated" datetime="2016-09-22T13:52:11+08:00" content="2016-09-22">
+              2016-09-22
             </time>
           </span>
 
@@ -319,8 +320,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Diary/" itemprop="url" rel="index">
-                    <span itemprop="name">Diary</span>
+                  <a href="/categories/CS/" itemprop="url" rel="index">
+                    <span itemprop="name">CS</span>
                   </a>
                 </span>
 
@@ -335,8 +336,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/04/欢迎/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/04/欢迎/" itemprop="commentsCount"></span>
+                <a href="/2016/09/22/POJ 2479 Maximum sum/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/22/POJ 2479 Maximum sum/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -359,8 +360,39 @@
       
 
       
-        <p>欢迎来到我的博客小站。<br><br><img src="http://ww2.sinaimg.cn/orj480/672ea2eagw1f4qye30g4uj20qo1bf7b5.jpg" alt="enter description here"><br><a id="more"></a></p>
-<p>建立了自己的博客，希望与大家在这里探讨各种技术问题，请多指教~</p>
+        <p>动态规划(Dynamic Programming)中关于最大子序列问题的变形。<br><a id="more"></a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><ul>
+<li>原题地址:        <a href="http://poj.org/problem?id=2479" target="_blank" rel="external">POJ 2479</a></li>
+<li>题目大意:    求不相交两段子段和的最大值</li>
+</ul>
+<h3 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h3><h4 id="方法一-超时"><a href="#方法一-超时" class="headerlink" title="方法一(超时)"></a>方法一(超时)</h4><h5 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h5><p>首先想到的就是最大子序列的问题，我的第一个思路就是将这个数组分成两段（界限设为m,从下标2开始，到N-1结束），分别求这两个数组的最大子序列，然后将其求和。再从N-2个最大和中取其中的最大值。</p>
+<p>具体思路如下：</p>
+<ol>
+<li>将数组用m划分，分别划分为:<ul>
+<li>num[1],num[2]-&gt;num[N]</li>
+<li>num[1]-&gt;num[2],num[3]-&gt;num[N]</li>
+<li>…….</li>
+<li>num[1]-&gt;num[N-1],num[N]</li>
+</ul>
+</li>
+<li>对上述N-1对数组，分别求前半段和后半段最大子序列，并将其相加求出该划分条件下，前后半段的最大和。</li>
+<li>从N-1个最大和之中选出最大的结果。</li>
+</ol>
+<div align="center"><br><img src="http://i2.buimg.com/4851/67651d5bd4218498.jpg" alt="方法一示例图"><br>方法一示例图<br></div>
+
+<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">int</span> num[<span class="number">50001</span>];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> T,N;</div><div class="line">	<span class="built_in">cin</span>&gt;&gt;T;</div><div class="line">	<span class="keyword">while</span>(T--)&#123;</div><div class="line">		<span class="built_in">cin</span>&gt;&gt;N;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)</div><div class="line">			<span class="built_in">cin</span>&gt;&gt;num[i+<span class="number">1</span>];</div><div class="line">		<span class="keyword">int</span> max_sum=<span class="number">0</span>,cur_max_sum=<span class="number">0</span>;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> m=<span class="number">2</span>;m&lt;=N;m++)&#123;<span class="comment">//m划分整个数组</span></div><div class="line">		<span class="keyword">int</span>   pre_next_sum=<span class="number">0</span>,pre_max_sum=<span class="number">0</span>;</div><div class="line">		<span class="keyword">int</span>   latter_next_sum=<span class="number">0</span>,latter_max_sum=<span class="number">0</span>;</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;<span class="comment">//求前半段的最大子序列</span></div><div class="line">				pre_next_sum+=num[i];</div><div class="line">				<span class="keyword">if</span>(pre_next_sum&gt;pre_max_sum)</div><div class="line">					pre_max_sum=pre_next_sum;</div><div class="line">				<span class="keyword">else</span> <span class="keyword">if</span>(pre_next_sum&lt;<span class="number">0</span>)</div><div class="line">					pre_next_sum=<span class="number">0</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=m+<span class="number">1</span>;j&lt;=N;j++)&#123;<span class="comment">//求后半段的最大子序列</span></div><div class="line">				latter_next_sum+=num[j];</div><div class="line">				<span class="keyword">if</span>(latter_next_sum&gt;latter_max_sum)</div><div class="line">					latter_max_sum=latter_next_sum;</div><div class="line">				<span class="keyword">else</span> <span class="keyword">if</span>(latter_next_sum&lt;<span class="number">0</span>)</div><div class="line">					latter_next_sum=<span class="number">0</span>;		</div><div class="line">			&#125;</div><div class="line">			cur_max_sum=pre_max_sum+latter_max_sum;</div><div class="line">			<span class="keyword">if</span>(cur_max_sum&gt;max_sum)<span class="comment">//取最大的max_sum</span></div><div class="line">				max_sum=cur_max_sum;</div><div class="line">			</div><div class="line">		&#125;	</div><div class="line">		<span class="built_in">cout</span>&lt;&lt;max_sum&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但是上述方法提交后却出现了超时的问题，可能是嵌套了两个for循环，所以不得不另辟蹊径降低时间复杂度，<br>我们由此得出方法二。</p>
+<h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><h5 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h5><p>此方法前半段与方法一相同，均是对数组从左到右求最大子子段和，但是需要用一个数组ltor_sum[i]来存储num[1]-&gt;num[i]的最大子子段和。</p>
+<p>具体思路如下:</p>
+<ol>
+<li>从左到右依次求出ltor_sum[i]的值。</li>
+<li>再从右到左计算最大子子段和。</li>
+<li>将第二步求出的最大值与对应的ltor_sum[i]求和。</li>
+<li>我们使用max_sum存储结果，当从右到左遍历到i=2时,我们将算出正确结果。<div align="center"><br><img src="http://i1.piimg.com/4851/db346ff2f2cb9b3b.jpg" alt="enter description here"><br>方法二示例图<br></div>
+
+</li>
+</ol>
+<h5 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h5><p>ltor_sum[i](ltor=left_to_right):    存储num[1]到num[i]的最大和数组<br>ltor_temp_max:    存储num[1]到num[i]的最大和的临时值<br>ltor_max_sum:    存储num[1]到num[i]的最大和<br>max_sum:    代表最终结果<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MIN -0x3f3f</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">int</span> num[<span class="number">50001</span>],ltor_sum[<span class="number">50001</span>];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> T,N;</div><div class="line">	<span class="keyword">int</span> ltor_temp_max,ltor_max_sum;</div><div class="line">	<span class="keyword">int</span> max_sum;</div><div class="line">	<span class="keyword">int</span> rtol_temp_sum=<span class="number">0</span>,rtol_max_sum;</div><div class="line">	<span class="built_in">cin</span>&gt;&gt;T;</div><div class="line">	<span class="keyword">while</span>(T--)&#123;</div><div class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;N);</div><div class="line">		ltor_temp_max=<span class="number">0</span>,ltor_max_sum=MIN;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</div><div class="line">			<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;num[i]);</div><div class="line">			ltor_temp_max+=num[i];</div><div class="line">			<span class="keyword">if</span>(ltor_temp_max&gt;ltor_max_sum)</div><div class="line">				ltor_max_sum=ltor_temp_max;</div><div class="line">			ltor_sum[i]=ltor_max_sum;</div><div class="line">			<span class="keyword">if</span>(ltor_temp_max&lt;<span class="number">0</span>)</div><div class="line">				ltor_temp_max=<span class="number">0</span>;</div><div class="line">			</div><div class="line">		&#125;</div><div class="line">		max_sum=MIN;</div><div class="line">		rtol_temp_sum=<span class="number">0</span>,rtol_max_sum=MIN;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=N;i&gt;<span class="number">1</span>;i--)&#123;</div><div class="line">			rtol_temp_sum+=num[i];</div><div class="line">		        rtol_max_sum=max(rtol_max_sum,rtol_temp_sum);	</div><div class="line">			<span class="keyword">if</span>(rtol_temp_sum&lt;<span class="number">0</span>)</div><div class="line">		           rtol_temp_sum=<span class="number">0</span>;</div><div class="line">		     	max_sum=max(ltor_sum[i<span class="number">-1</span>]+rtol_max_sum,max_sum); </div><div class="line">				</div><div class="line">		&#125;		</div><div class="line">		<span class="built_in">cout</span>&lt;&lt;max_sum&lt;&lt;<span class="built_in">endl</span>;			</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -383,7 +415,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/杂谈/" rel="tag">#杂谈</a>
+            <a href="/tags/dp/" rel="tag">#dp</a>
+          
+            <a href="/tags/poj/" rel="tag">#poj</a>
           
         </div>
       
@@ -392,17 +426,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/02/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2016/09/19/nim_game/" rel="next" title="LeetCode-Nim Game解题思路">
+                <i class="fa fa-chevron-left"></i> LeetCode-Nim Game解题思路
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/04/hdu1254/" rel="prev" title="HDU 1254 推箱子">
-                HDU 1254 推箱子 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -451,8 +481,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/04/欢迎/"
-           data-title="欢迎" data-url="http://taolvezh.cn/2016/08/04/欢迎/">
+      <div class="ds-thread" data-thread-key="2016/09/22/POJ 2479 Maximum sum/"
+           data-title="POJ 2479 Maximum sum" data-url="http://taolvezh.cn/2016/09/22/POJ 2479 Maximum sum/">
       </div>
     
   </div>
@@ -543,7 +573,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题过程"><span class="nav-number">2.</span> <span class="nav-text">解题过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法一-超时"><span class="nav-number">2.1.</span> <span class="nav-text">方法一(超时)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#解题思路"><span class="nav-number">2.1.1.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码"><span class="nav-number">2.1.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法二"><span class="nav-number">2.2.</span> <span class="nav-text">方法二</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#解题思路-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码实现"><span class="nav-number">2.2.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
