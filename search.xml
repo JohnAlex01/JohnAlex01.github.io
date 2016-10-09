@@ -37,7 +37,8 @@
 <li>原题地址:        <a href="http://poj.org/problem?id=2479" target="_blank" rel="external">POJ 2479</a></li>
 <li>题目大意:    求不相交两段子段和的最大值</li>
 </ul>
-<h2 id="—"><a href="#—" class="headerlink" title="—"></a>—</h2><h3 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h3><h4 id="方法一-超时"><a href="#方法一-超时" class="headerlink" title="方法一(超时)"></a>方法一(超时)</h4><h5 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h5><p>首先想到的就是最大子序列的问题，我的第一个思路就是将这个数组分成两段（界限设为m,从下标2开始，到N-1结束），分别求这两个数组的最大子序列，然后将其求和。再从N-2个最大和中取其中的最大值。</p>
+<hr>
+<h3 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h3><h4 id="方法一-超时"><a href="#方法一-超时" class="headerlink" title="方法一(超时)"></a>方法一(超时)</h4><h5 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h5><p>首先想到的就是最大子序列的问题，我的第一个思路就是将这个数组分成两段（界限设为m,从下标2开始，到N-1结束），分别求这两个数组的最大子序列，然后将其求和。再从N-2个最大和中取其中的最大值。</p>
 <p>具体思路如下：</p>
 <ol>
 <li>将数组用m划分，分别划分为:<ul>
