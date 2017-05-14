@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://taolvezh.cn/"/>
-  <updated>2016-10-09T14:35:04.479Z</updated>
+  <updated>2017-05-14T08:27:23.066Z</updated>
   <id>http://taolvezh.cn/</id>
   
   <author>
@@ -14,6 +14,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>new blog</title>
+    <link href="http://taolvezh.cn/2017/05/14/new-blog/"/>
+    <id>http://taolvezh.cn/2017/05/14/new-blog/</id>
+    <published>2017-05-14T08:27:23.000Z</published>
+    <updated>2017-05-14T08:27:23.066Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>POJ 2479 Maximum sum</title>
