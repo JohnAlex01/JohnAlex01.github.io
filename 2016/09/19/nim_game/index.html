@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="这是一道简单的推理��?">
+<meta name="description" content="这是一道简单的推理题">
 <meta name="keywords" content="leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode-Nim Game解题思路">
 <meta property="og:url" content="http://taolvezh.cn/2016/09/19/nim_game/index.html">
 <meta property="og:site_name" content="一路向北">
-<meta property="og:description" content="这是一道简单的推理��?">
+<meta property="og:description" content="这是一道简单的推理题">
 <meta property="og:image" content="http://i1.piimg.com/4851/b42836db996f7dd9.jpg">
-<meta property="og:updated_time" content="2017-05-14T08:36:23.264Z">
+<meta property="og:updated_time" content="2017-05-14T09:25:23.939Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode-Nim Game解题思路">
-<meta name="twitter:description" content="这是一道简单的推理��?">
+<meta name="twitter:description" content="这是一道简单的推理题">
 <meta name="twitter:image" content="http://i1.piimg.com/4851/b42836db996f7dd9.jpg">
 
 
@@ -362,14 +362,19 @@
       
 
       
-        <p>这是一道简单的推理��?<img src="http://i1.piimg.com/4851/b42836db996f7dd9.jpg" alt="enter description here"></p>
+        <p>这是一道简单的推理题<br><img src="http://i1.piimg.com/4851/b42836db996f7dd9.jpg" alt="enter description here"></p>
 <a id="more"></a>
 <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>You are playing the following Nim Game with your friend: There is a heap of stones on the table, each time one of you take turns to remove 1 to 3 stones. The one who removes the last stone will be the winner. You will take the first turn to remove the stones.</p>
 <p>Both of you are very clever and have optimal strategies for the game. Write a function to determine whether you can win the game given the number of stones in the heap.</p>
 <p>For example, if there are 4 stones in the heap, then you will never win the game: no matter 1, 2, or 3 stones you remove, the last stone will always be removed by your friend.</p>
-<p>注解��?      你和你的朋友玩下面的NIM游戏：在桌上的一堆石头，每一次你轮流取出1��?块石头。移除最后一块石头的人将是赢家。你将首先出手取出石头��?你们两个都很聪明都有最佳的游戏策略。编写一个函数，确定你是否可以赢得游戏中给定的一些石头堆中的数量��?例如，如果有4块石头，那么你永远不会赢得游戏：无论��?��?，或3个石头你删除，最后一块石头将永远被你的朋友取走��?</p>
+<p>注解：<br>      你和你的朋友玩下面的NIM游戏：在桌上的一堆石头，每一次你轮流取出1到3块石头。移除最后一块石头的人将是赢家。你将首先出手取出石头。<br>你们两个都很聪明都有最佳的游戏策略。编写一个函数，确定你是否可以赢得游戏中给定的一些石头堆中的数量。<br>例如，如果有4块石头，那么你永远不会赢得游戏：无论是1，2，或3个石头你删除，最后一块石头将永远被你的朋友取走。</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ol>
-<li>若石头数��?–3个，无论如何都会取胜��?2. 若石头数��?，第一轮无论取多少个石头（1–3个），最后一块石头都将是对方取走，我们暂且将4称为<strong>死亡数字</strong>��?3. 若石头数��?–7个，你可以取1–3块石头，��?<em>死亡数字<strong>��?块石头）留给对方，这样，无论如何你将取胜��?4. 若石头数��?，无论取1块，2块，还是3块石头，所剩的石头仍处��?–7块之间，对方掌握主动权，可将</strong>死亡数字*</em>��?块石头）留给你��?5. 以此类推，若石头数为4的整数倍， 则你将失败��?6. 所以，若n%4==0，游戏失败；反之则胜��?</li>
+<li>若石头数为1–3个，无论如何都会取胜。</li>
+<li>若石头数为4，第一轮无论取多少个石头（1–3个），最后一块石头都将是对方取走，我们暂且将4称为<strong>死亡数字</strong>。</li>
+<li>若石头数为5–7个，你可以取1–3块石头，将<strong>死亡数字</strong>（4块石头）留给对方，这样，无论如何你将取胜。</li>
+<li>若石头数为8，无论取1块，2块，还是3块石头，所剩的石头仍处于5–7块之间，对方掌握主动权，可将<strong>死亡数字</strong>（4块石头）留给你。</li>
+<li>以此类推，若石头数为4的整数倍， 则你将失败。</li>
+<li>所以，若n%4==0，游戏失败；反之则胜。</li>
 </ol>
 <h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canWinNim</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> n%<span class="number">4</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 
