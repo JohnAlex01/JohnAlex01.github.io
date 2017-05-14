@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://taolvezh.cn/"/>
-  <updated>2016-08-05T15:59:44.108Z</updated>
+  <updated>2017-05-14T09:20:29.183Z</updated>
   <id>http://taolvezh.cn/</id>
   
   <author>
@@ -16,40 +16,13 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://taolvezh.cn/2017/05/14/hello-world/"/>
-    <id>http://taolvezh.cn/2017/05/14/hello-world/</id>
-    <published>2017-05-14T07:59:18.814Z</published>
-    <updated>2016-08-05T15:59:44.108Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.<br><a id="more"></a></p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>不忘初心，继续前进</title>
     <link href="http://taolvezh.cn/2016/12/04/21sr/"/>
     <id>http://taolvezh.cn/2016/12/04/21sr/</id>
     <published>2016-12-04T13:23:39.000Z</published>
-    <updated>2017-05-14T09:15:58.335Z</updated>
+    <updated>2017-05-14T09:20:29.183Z</updated>
     
-    <content type="html"><![CDATA[<p>生日当天发日志这个习惯还是被我莫名其妙的坚持了下来<br><img src="http://p1.bqimg.com/4851/e3637dd123fe2df7.jpg" alt="enter description here">·<br>   <strong>21岁，时间过得真快，在奔三的路上渐行渐远。</strong></p>
+    <content type="html"><![CDATA[<p>生日当天发日志这个习惯还是被我莫名其妙的坚持了下来<br><img src="http://p1.bqimg.com/4851/e3637dd123fe2df7.jpg" alt="enter description here"><a id="more"></a><br>   <strong>21岁，时间过得真快，在奔三的路上渐行渐远。</strong></p>
 <p>   其实，年龄一大，对生日这个日子真的不会像小时候那样激动了，打算平平淡淡过一天就好的，没想到从起床那一刻开始，各位同学老师家人的祝福响个不停~~</p>
 <p>   写这个文章的确算临时起意，没有前两年想的那么仔细，并没有什么主题。要写的原因一个是想把这个习惯坚持下去，二是给自己的网站骗一下访问量，所以这次如果写的毫无章法请各位dalao不要嫌弃我。（逃</p>
 <p>   <strong>2015.12.4—2016.12.4，一年，足够改变很多。</strong></p>
@@ -74,7 +47,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;生日当天发日志这个习惯还是被我莫名其妙的坚持了下来&lt;br&gt;&lt;img src=&quot;http://p1.bqimg.com/4851/e3637dd123fe2df7.jpg&quot; alt=&quot;enter description here&quot;&gt;·&lt;br&gt;   &lt;strong&gt;21岁，时间
+      &lt;p&gt;生日当天发日志这个习惯还是被我莫名其妙的坚持了下来&lt;br&gt;&lt;img src=&quot;http://p1.bqimg.com/4851/e3637dd123fe2df7.jpg&quot; alt=&quot;enter description here&quot;&gt;
     
     </summary>
     
