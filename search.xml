@@ -4,14 +4,6 @@
   
     
     <entry>
-      <title><![CDATA[new blog]]></title>
-      <url>http://taolvezh.cn/2017/05/14/new-blog/</url>
-      <content type="html"></content>
-      
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[POJ 2479 Maximum sum]]></title>
       <url>http://taolvezh.cn/2017/05/14/POJ%202479%20Maximum%20sum/</url>
       <content type="html"><![CDATA[<p>动态规划(Dynamic Programming)中关于最大子序列问题的变形。<br><a id="more"></a></p>
