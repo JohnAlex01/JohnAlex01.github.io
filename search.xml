@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+    
+    <entry>
+      <title><![CDATA[POJ 2479 Maximum sum]]></title>
+      <url>http://taolvezh.cn/2017/05/14/POJ%202479%20Maximum%20sum/</url>
+      <content type="html"><![CDATA[<p>动态规划(Dynamic Programming)中关于最大子序列问题的变形。<br><a id="more"></a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><ul>
+<li>原题地址:        <a href="http://poj.org/problem?id=2479" target="_blank" rel="external">POJ 2479</a></li>
+<li>题目大意:    求不相交两段子段和的最大值</li>
+</ul>
+<hr>
+<h3 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h3><h4 id="方法一-超时"><a href="#方法一-超时" class="headerlink" title="方法一(超时)"></a>方法一(超时)</h4><h5 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h5><p>首先想到的就是最大子序列的问题，我的第一个思路就是将这个数组分成两段（界限设为m,从下标2开始，到N-1结束），分别求这两个数组的最大子序列，然后将其求和。再从N-2个最大和中取其中的最大值。</p>
+<p>具体思路如下：</p>
+<ol>
+<li>将数组用m划分，分别划分为:<ul>
+<li>num[1],num[2]-&gt;num[N]</li>
+<li>num[1]-&gt;num[2],num[3]-&gt;num[N]</li>
+<li>…….</li>
+<li>num[1]-&gt;num[N-1],num[N]</li>
+</ul>
+</li>
+<li>对上述N-1对数组，分别求前半段和后半段最大子序列，并将其相加求出该划分条件下，前后半段的最大和。</li>
+<li>从N-1个最大和之中选出最大的结果。</li>
+</ol>
+<div align="center"><br><img src="http://i2.buimg.com/4851/67651d5bd4218498.jpg" alt="方法一示例图"><br>方法一示例图<br></div>
+
+<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">int</span> num[<span class="number">50001</span>];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> T,N;</div><div class="line">	<span class="built_in">cin</span>&gt;&gt;T;</div><div class="line">	<span class="keyword">while</span>(T--)&#123;</div><div class="line">		<span class="built_in">cin</span>&gt;&gt;N;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)</div><div class="line">			<span class="built_in">cin</span>&gt;&gt;num[i+<span class="number">1</span>];</div><div class="line">		<span class="keyword">int</span> max_sum=<span class="number">0</span>,cur_max_sum=<span class="number">0</span>;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> m=<span class="number">2</span>;m&lt;=N;m++)&#123;<span class="comment">//m划分整个数组</span></div><div class="line">		<span class="keyword">int</span>   pre_next_sum=<span class="number">0</span>,pre_max_sum=<span class="number">0</span>;</div><div class="line">		<span class="keyword">int</span>   latter_next_sum=<span class="number">0</span>,latter_max_sum=<span class="number">0</span>;</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;<span class="comment">//求前半段的最大子序列</span></div><div class="line">				pre_next_sum+=num[i];</div><div class="line">				<span class="keyword">if</span>(pre_next_sum&gt;pre_max_sum)</div><div class="line">					pre_max_sum=pre_next_sum;</div><div class="line">				<span class="keyword">else</span> <span class="keyword">if</span>(pre_next_sum&lt;<span class="number">0</span>)</div><div class="line">					pre_next_sum=<span class="number">0</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=m+<span class="number">1</span>;j&lt;=N;j++)&#123;<span class="comment">//求后半段的最大子序列</span></div><div class="line">				latter_next_sum+=num[j];</div><div class="line">				<span class="keyword">if</span>(latter_next_sum&gt;latter_max_sum)</div><div class="line">					latter_max_sum=latter_next_sum;</div><div class="line">				<span class="keyword">else</span> <span class="keyword">if</span>(latter_next_sum&lt;<span class="number">0</span>)</div><div class="line">					latter_next_sum=<span class="number">0</span>;		</div><div class="line">			&#125;</div><div class="line">			cur_max_sum=pre_max_sum+latter_max_sum;</div><div class="line">			<span class="keyword">if</span>(cur_max_sum&gt;max_sum)<span class="comment">//取最大的max_sum</span></div><div class="line">				max_sum=cur_max_sum;</div><div class="line">			</div><div class="line">		&#125;	</div><div class="line">		<span class="built_in">cout</span>&lt;&lt;max_sum&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但是上述方法提交后却出现了超时的问题，可能是嵌套了两个for循环，所以不得不另辟蹊径降低时间复杂度，我们由此得出方法二。</p>
+<h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><h5 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h5><p>此方法前半段与方法一相同，均是对数组从左到右求最大子子段和，但是需要用一个数组ltor_sum[i]来存储num[1]-&gt;num[i]的最大子子段和。</p>
+<p>具体思路如下:</p>
+<ol>
+<li>从左到右依次求出ltor_sum[i]的值。</li>
+<li>再从右到左计算最大子子段和。</li>
+<li>将第二步求出的最大值与对应的ltor_sum[i]求和。</li>
+<li>我们使用max_sum存储结果，当从右到左遍历到i=2时,我们将算出正确结果。<div align="center"><br><img src="http://i1.piimg.com/4851/db346ff2f2cb9b3b.jpg" alt="enter description here"><br>方法二示例图<br></div>
+
+</li>
+</ol>
+<h5 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h5><p>ltor_sum[i](ltor=left_to_right):    存储num[1]到num[i]的最大和数组<br>ltor_temp_max:    存储num[1]到num[i]的最大和的临时值<br>ltor_max_sum:    存储num[1]到num[i]的最大和<br>max_sum:    代表最终结果<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MIN -0x3f3f</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">int</span> num[<span class="number">50001</span>],ltor_sum[<span class="number">50001</span>];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> T,N;</div><div class="line">	<span class="keyword">int</span> ltor_temp_max,ltor_max_sum;</div><div class="line">	<span class="keyword">int</span> max_sum;</div><div class="line">	<span class="keyword">int</span> rtol_temp_sum=<span class="number">0</span>,rtol_max_sum;</div><div class="line">	<span class="built_in">cin</span>&gt;&gt;T;</div><div class="line">	<span class="keyword">while</span>(T--)&#123;</div><div class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;N);</div><div class="line">		ltor_temp_max=<span class="number">0</span>,ltor_max_sum=MIN;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</div><div class="line">			<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;num[i]);</div><div class="line">			ltor_temp_max+=num[i];</div><div class="line">			<span class="keyword">if</span>(ltor_temp_max&gt;ltor_max_sum)</div><div class="line">				ltor_max_sum=ltor_temp_max;</div><div class="line">			ltor_sum[i]=ltor_max_sum;</div><div class="line">			<span class="keyword">if</span>(ltor_temp_max&lt;<span class="number">0</span>)</div><div class="line">				ltor_temp_max=<span class="number">0</span>;</div><div class="line">			</div><div class="line">		&#125;</div><div class="line">		max_sum=MIN;</div><div class="line">		rtol_temp_sum=<span class="number">0</span>,rtol_max_sum=MIN;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=N;i&gt;<span class="number">1</span>;i--)&#123;</div><div class="line">			rtol_temp_sum+=num[i];</div><div class="line">		        rtol_max_sum=max(rtol_max_sum,rtol_temp_sum);	</div><div class="line">			<span class="keyword">if</span>(rtol_temp_sum&lt;<span class="number">0</span>)</div><div class="line">		           rtol_temp_sum=<span class="number">0</span>;</div><div class="line">		     	max_sum=max(ltor_sum[i<span class="number">-1</span>]+rtol_max_sum,max_sum); </div><div class="line">				</div><div class="line">		&#125;		</div><div class="line">		<span class="built_in">cout</span>&lt;&lt;max_sum&lt;&lt;<span class="built_in">endl</span>;			</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+]]></content>
+      
+        <categories>
+            
+            <category> CS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> dp </tag>
+            
+            <tag> poj </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[POJ 1065 Wooden Sticks]]></title>
+      <url>http://taolvezh.cn/2017/05/14/POJ%201065%20wooden%20sticks/</url>
+      <content type="html"><![CDATA[<p>一道既能用动态规划(Dynamic Programming)，也能用贪心(Greedy)求解的问题。<br><img src="http://www.feizl.com/upload2007/2015_05/15050910458129.jpg" alt="enter description here"><br><a id="more"></a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><ul>
+<li>原题地址:    <a href="http://poj.org/problem?id=1065" target="_blank" rel="external">POJ 1065</a></li>
+</ul>
+<hr>
+<h3 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h3><h4 id="方法一（动态规划）"><a href="#方法一（动态规划）" class="headerlink" title="方法一（动态规划）"></a>方法一（动态规划）</h4><h5 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h5><p>   在这个问题中，我们可以把它简化为一个LIS（最长增长子序列）类型的一个问题。因为可以证明<strong>不下降序列完全覆盖数就是最长下降子列的长度</strong>，所以有多少个不下降序列就有多长的递减子序列，即我们也将其按照l(第一优先级),w（第二优先级）的顺序从小到大排列，再找出这个序列的一个最长减小子序列即可。而LIS是动态规划的一个典型问题，因为它有着动态规划的两个典型特征：</p>
+<ol>
+<li>最优子结构：<br>一个问题的最优解由它子问题的最优解来决定，即数列a1,a2…an的LIS由a1,a2…a（n-1）的LIS决定。</li>
+<li>重叠子问题<br>在求解数列an的LIS问题中，其子问题会被反复求解。故可用动态规划的记忆化搜索特性来降低求解的时间空间复杂度。</li>
+</ol>
+<hr>
+<p><img src="http://p1.bqimg.com/4851/9c691041bb6ad8cc.jpg" alt=""></p>
+<h5 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">s</span>&#123;</span></div><div class="line">	<span class="keyword">int</span> l;</div><div class="line">	<span class="keyword">int</span> w;	</div><div class="line">&#125;s;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="keyword">const</span> s &amp;a,<span class="keyword">const</span> s &amp;b)</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> a.l&lt;=b.l;</div><div class="line">&#125;</div><div class="line">s wood[<span class="number">5001</span>];</div><div class="line"><span class="keyword">int</span> dp[<span class="number">5001</span>];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> N,T;</div><div class="line">	<span class="built_in">cin</span>&gt;&gt;T;</div><div class="line">	<span class="keyword">while</span>(T--)&#123;</div><div class="line">	<span class="built_in">memset</span>(dp,<span class="number">0</span>,<span class="keyword">sizeof</span>(dp));</div><div class="line">	<span class="built_in">cin</span>&gt;&gt;N;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)</div><div class="line">		<span class="built_in">cin</span>&gt;&gt;wood[i].l&gt;&gt;wood[i].w;</div><div class="line">	sort(wood+<span class="number">1</span>,wood+N+<span class="number">1</span>,cmp);</div><div class="line">	<span class="keyword">int</span> maxlen=<span class="number">0</span>;;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</div><div class="line">		dp[i]=<span class="number">1</span>;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;i;j++)</div><div class="line">		<span class="keyword">if</span>(wood[i].w&lt;wood[j].w&amp;&amp;dp[i]&lt;dp[j]+<span class="number">1</span>)&#123;</div><div class="line">			dp[i]=dp[j]+<span class="number">1</span>;</div><div class="line">		&#125;		</div><div class="line">		maxlen=max(maxlen,dp[i]);</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">cout</span>&lt;&lt;maxlen&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h4 id="方法二（贪心）"><a href="#方法二（贪心）" class="headerlink" title="方法二（贪心）"></a>方法二（贪心）</h4><h5 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h5><p>找到若干个单调递增子序列，我们需将其按照l(第一优先级),w（第二优先级）的顺序从小到大排列。接着从第一个（最小的）木棍依次向后寻找木棍，使这m条木棍（m&lt;=n）严格地递增（即w&lt;=w’&amp;&amp;l&lt;=l’）。然后依次从未使用到的木棍里面继续寻找该种序列，重复若干次，直到所有的木棍均在若干个该种序列的集合中。在寻找该种序列的过程中，我们不顾及其他子问题的解，只是从原序列中找出严格大于当前木棍的木棍，这便是贪心算法的贪心选择性质。</p>
+<hr>
+<p><img src="http://i1.piimg.com/4851/e7292cd52613166e.jpg" alt=""></p>
+<h5 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">s</span>&#123;</span></div><div class="line">	<span class="keyword">int</span> l;</div><div class="line">	<span class="keyword">int</span> w;	</div><div class="line">&#125;s;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="keyword">const</span> s &amp;a,<span class="keyword">const</span> s &amp;b)</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> a.l&lt;=b.l;</div><div class="line">&#125;</div><div class="line">s wood[<span class="number">5001</span>];</div><div class="line"><span class="keyword">int</span> flag[<span class="number">5001</span>];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> N,T;</div><div class="line">	<span class="built_in">cin</span>&gt;&gt;T;</div><div class="line">	<span class="keyword">while</span>(T--)&#123;</div><div class="line">	<span class="built_in">memset</span>(dp,<span class="number">0</span>,<span class="keyword">sizeof</span>(dp));</div><div class="line">	<span class="built_in">cin</span>&gt;&gt;N;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)</div><div class="line">		<span class="built_in">cin</span>&gt;&gt;wood[i].l&gt;&gt;wood[i].w;</div><div class="line">	sort(wood+<span class="number">1</span>,wood+N+<span class="number">1</span>,cmp);</div><div class="line">	<span class="keyword">int</span> cnt_seq=<span class="number">0</span>;;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">size_t</span> i=<span class="number">1</span>;i&lt;=N;++i)&#123;</div><div class="line">	s last=wood[i];<span class="comment">//last是一个wood，用来存储当前元素，以便和之后的元素作比较</span></div><div class="line">	<span class="keyword">if</span>(flag[i]==<span class="number">0</span>)&#123;<span class="comment">//flag是一个标记数组，记录该木棍是否被访问过。该if语句判断是否访问过该木棍，若未被访问，则新增一个递增序列。</span></div><div class="line">	<span class="keyword">for</span>(<span class="keyword">size_t</span> j=i;j&lt;=N;++j)</div><div class="line">		<span class="keyword">if</span>(last.w&lt;=wood[j].w&amp;&amp;flag[j]==<span class="number">0</span>)&#123;</div><div class="line">		last=wood[j];</div><div class="line">		flag[j]=<span class="number">1</span>;<span class="comment">//如果符合递增的要求，即把这个木棍放到当前的序列中，并标记为已访问</span></div><div class="line">		&#125;</div><div class="line">		++ cnt_seq;<span class="comment">//序列数加一，即所需时间加一</span></div><div class="line">		  &#125;</div><div class="line">		&#125;</div><div class="line">	<span class="built_in">cout</span>&lt;&lt; cnt_seq&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="分析总结"><a href="#分析总结" class="headerlink" title="分析总结"></a>分析总结</h3><p>该题拥有贪心以及动态规划两种解决方案。在看题之后，给人的第一感觉实用动态规划求解，然而寻找状态的转移方程并不是很容易。主要是没有看出这个问题是LIS的变种，而这一点也是我参考别人的博客才理解。贪心算法则是我在寻找子问题时悟出的另一种解法:将木棍以递增的序列排序，然后将这一序列分为几堆(按照l&lt;=l’&amp;&amp;w&lt;=w’的规则)，则堆数就是所需要的时间。动态规划也是这个思想，但在分堆的时候应用了一个更简单的解决方案:即我们从排好序的总序列中找到一个严格递减的子序列，那么子序列所含的元素数便是贪心算法中的堆数，即是我们所要花费的时间。<br>此题我们可以看出，虽然动态规划的适用性更广，但其变化性强，在寻找最优子问题和状态转移方程时容易遇到困难，而这还需要多加练习才能解决。而贪心算法虽然易于想到，但其却有一定的适用范围。以我做题的经验来看，往往能用贪心算法解决的问题，也能用动态规划解决；反之未然。</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> dp </tag>
+            
+            <tag> greedy </tag>
+            
+            <tag> poj </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[LeetCode-Nim Game解题思路]]></title>
+      <url>http://taolvezh.cn/2017/05/14/nim_game/</url>
+      <content type="html"><![CDATA[<p>这是一道简单的推理题<br><img src="http://i1.piimg.com/4851/b42836db996f7dd9.jpg" alt="enter description here"></p>
+<a id="more"></a>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>You are playing the following Nim Game with your friend: There is a heap of stones on the table, each time one of you take turns to remove 1 to 3 stones. The one who removes the last stone will be the winner. You will take the first turn to remove the stones.</p>
+<p>Both of you are very clever and have optimal strategies for the game. Write a function to determine whether you can win the game given the number of stones in the heap.</p>
+<p>For example, if there are 4 stones in the heap, then you will never win the game: no matter 1, 2, or 3 stones you remove, the last stone will always be removed by your friend.</p>
+<p>注解：<br>      你和你的朋友玩下面的NIM游戏：在桌上的一堆石头，每一次你轮流取出1到3块石头。移除最后一块石头的人将是赢家。你将首先出手取出石头。<br>你们两个都很聪明都有最佳的游戏策略。编写一个函数，确定你是否可以赢得游戏中给定的一些石头堆中的数量。<br>例如，如果有4块石头，那么你永远不会赢得游戏：无论是1，2，或3个石头你删除，最后一块石头将永远被你的朋友取走。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ol>
+<li>若石头数为1–3个，无论如何都会取胜。</li>
+<li>若石头数为4，第一轮无论取多少个石头（1–3个），最后一块石头都将是对方取走，我们暂且将4称为<strong>死亡数字</strong>。</li>
+<li>若石头数为5–7个，你可以取1–3块石头，将<strong>死亡数字</strong>（4块石头）留给对方，这样，无论如何你将取胜。</li>
+<li>若石头数为8，无论取1块，2块，还是3块石头，所剩的石头仍处于5–7块之间，对方掌握主动权，可将<strong>死亡数字</strong>（4块石头）留给你。</li>
+<li>以此类推，若石头数为4的整数倍， 则你将失败。</li>
+<li>所以，若n%4==0，游戏失败；反之则胜。</li>
+</ol>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canWinNim</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> n%<span class="number">4</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> CS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Hello World]]></title>
+      <url>http://taolvezh.cn/2017/05/14/hello-world/</url>
+      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.<br><a id="more"></a></p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[HDU 1254 推箱子]]></title>
+      <url>http://taolvezh.cn/2017/05/14/hdu1254/</url>
+      <content type="html"><![CDATA[<p>推箱子是一个很经典的游戏.今天我们来玩一个简单版本.<br><a id="more"></a></p>
+<h3 id="推箱子"><a href="#推箱子" class="headerlink" title="推箱子"></a>推箱子</h3><p>Time Limit: 2000/1000 MS (Java/Others)<br>Memory Limit: 65536/32768 K (Java/Others)</p>
+<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>在一个M*N的房间里有一个箱子和一个搬运工,搬运工的工作就是把箱子推到指定的位置,注意,搬运工只能推箱子而不能拉箱子,因此如果箱子被推到一个角上(如图2)那么箱子就不能再被移动了,如果箱子被推到一面墙上,那么箱子只能沿着墙移动.</p>
+<p>现在给定房间的结构,箱子的位置,搬运工的位置和箱子要被推去的位置,请你计算出搬运工至少要推动箱子多少格.</p>
+<div align="center"><br><img src="http://img.blog.csdn.net/20151211100807926" alt="enter description here"><br></div>
+
+<p>Sample Input<br>1<br>5 5<br>0 3 0 0 0<br>1 0 1 4 0<br>0 0 1 0 0<br>1 0 2 0 0<br>0 0 0 0 0</p>
+<p>Sample Output<br>4</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ul>
+<li>主要思路是<ul>
+<li>先对箱子广度优先搜索，决定箱子可以去的位置</li>
+<li>再对人进行深度优先搜索，判断是否可以到达箱子的位置</li>
+</ul>
+</li>
+</ul>
+<h3 id="解题代码"><a href="#解题代码" class="headerlink" title="解题代码"></a>解题代码</h3><p>将代码分为五部分进行解释。</p>
+<h4 id="变量定义"><a href="#变量定义" class="headerlink" title="变量定义"></a>变量定义</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt; </span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> WALL 1</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> ROAD 0</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> BOX_START_POINT 2</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MAN_START_POINT 4</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> TERMINAL 3</span></div><div class="line"><span class="keyword">int</span> start_man_x, start_man_y;</div><div class="line"><span class="keyword">int</span> start_box_x, start_box_y;</div><div class="line"></div><div class="line"><span class="keyword">int</span> direction[<span class="number">4</span>][<span class="number">2</span>] = &#123; <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span> &#125;;<span class="comment">//方向</span></div><div class="line"><span class="keyword">int</span> <span class="built_in">map</span>[<span class="number">10</span>][<span class="number">10</span>];<span class="comment">//地图</span></div><div class="line"><span class="keyword">int</span> mark[<span class="number">10</span>][<span class="number">10</span>][<span class="number">10</span>][<span class="number">10</span>];<span class="comment">//标记人与箱子此时的状态是否出现过</span></div><div class="line"><span class="keyword">int</span> flag[<span class="number">10</span>][<span class="number">10</span>];</div><div class="line"><span class="keyword">int</span> cols, rows;</div><div class="line"><span class="keyword">bool</span> can_arrive;<span class="comment">//人是否可以到达箱子所在的位置</span></div><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></div><div class="line">	<span class="keyword">int</span> man_x;</div><div class="line">	<span class="keyword">int</span> man_y;</div><div class="line">	<span class="keyword">int</span> box_x;</div><div class="line">	<span class="keyword">int</span> box_y;</div><div class="line">	<span class="keyword">int</span> cnt_step=<span class="number">0</span>;</div><div class="line">&#125;;<span class="comment">//node结构体</span></div><div class="line">node n1, n2, man_can_stepto;</div></pre></td></tr></table></figure>
+<p>direction数组控制箱子和人的前进方向，将其看做二维数组（2*4），分别代表上下左右。<br>例如:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">direction[<span class="number">0</span>][<span class="number">0</span>]&amp;direction[<span class="number">0</span>][<span class="number">1</span>]</div></pre></td></tr></table></figure></p>
+<p>代表向上，以此类推。</p>
+<p>node结构体存储了一个状态，人与箱子此时所在的位置，以及箱子已经被推进的次数。</p>
+<h4 id="判断人或者箱子位置是否合法"><a href="#判断人或者箱子位置是否合法" class="headerlink" title="判断人或者箱子位置是否合法"></a>判断人或者箱子位置是否合法</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_ok</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span> (x &gt;= <span class="number">0</span> &amp;&amp; y &gt;= <span class="number">0</span> &amp;&amp; x &lt; rows&amp;&amp;y &lt; cols&amp;&amp;<span class="built_in">map</span>[x][y]!=<span class="number">1</span>)</div><div class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果此时的坐标在map范围内，且该位置不是墙，则合法，返回true。否则false。</p>
+<h4 id="判断人是否可以到达箱子所在的点（深度优先搜索）"><a href="#判断人是否可以到达箱子所在的点（深度优先搜索）" class="headerlink" title="判断人是否可以到达箱子所在的点（深度优先搜索）"></a>判断人是否可以到达箱子所在的点（深度优先搜索）</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x_man,<span class="keyword">int</span> y_man,<span class="keyword">int</span> x_box,<span class="keyword">int</span> y_box)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span> (x_man == x_box&amp;&amp;y_man == y_box)&#123;</div><div class="line">		can_arrive = <span class="literal">true</span>;</div><div class="line">		<span class="keyword">return</span>;</div><div class="line">	&#125;<span class="comment">//两个点重合表示人可以到达箱子所在的点，标记can_arrive为true。</span></div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span> &amp;&amp; !can_arrive; i++)&#123;<span class="comment">//逐方向搜索人是否可以到达箱子所在的点</span></div><div class="line">		<span class="keyword">int</span> cur_x = x_man + direction[i][<span class="number">0</span>];</div><div class="line">		<span class="keyword">int</span> cur_y = y_man + direction[i][<span class="number">1</span>];</div><div class="line">		<span class="keyword">if</span> (is_ok(cur_x, cur_y) &amp;&amp; flag[cur_x][cur_y] == <span class="number">0</span>)&#123;</div><div class="line">			flag[cur_x][cur_y] = <span class="number">1</span>;<span class="comment">//去过的位置标记为1</span></div><div class="line">			dfs(cur_x, cur_y, x_box, y_box);<span class="comment">//继续dfs</span></div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="判断箱子是否可以到达目标点（广度优先搜索）"><a href="#判断箱子是否可以到达目标点（广度优先搜索）" class="headerlink" title="判断箱子是否可以到达目标点（广度优先搜索）"></a>判断箱子是否可以到达目标点（广度优先搜索）</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="built_in">queue</span>&lt;node&gt; q;<span class="comment">//为bfs建立一个队列</span></div><div class="line">	<span class="keyword">while</span> (!q.empty())</div><div class="line">	&#123;</div><div class="line">		q.pop();<span class="comment">//清空队列</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> man_stepto_x, man_stepto_y;</div><div class="line">	n1.box_x = start_box_x;</div><div class="line">	n1.box_y = start_box_y;</div><div class="line">	n1.man_x = start_man_x;</div><div class="line">	n1.man_y = start_man_y;</div><div class="line">	n1.cnt_step=<span class="number">0</span>;<span class="comment">//将初始态赋给n1</span></div><div class="line">	mark[start_man_x][start_man_y][start_box_x][start_box_y] = <span class="number">1</span>;<span class="comment">//标记此时的状态</span></div><div class="line">	q.push(n1);</div><div class="line">	<span class="keyword">while</span> (!q.empty())&#123;</div><div class="line">		n1 = q.front();</div><div class="line">		q.pop();</div><div class="line">		<span class="keyword">if</span> (<span class="built_in">map</span>[n1.box_x][n1.box_y] == TERMINAL)&#123;<span class="comment">//若n1此时箱子已经达到终点，输出结果</span></div><div class="line">			<span class="built_in">cout</span> &lt;&lt; n1.cnt_step &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">			<span class="keyword">return</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)&#123;</div><div class="line">			n2.box_x = n1.box_x + direction[i][<span class="number">0</span>];</div><div class="line">			n2.box_y = n1.box_y + direction[i][<span class="number">1</span>];</div><div class="line">			man_stepto_x = n1.box_x - direction[i][<span class="number">0</span>];</div><div class="line">			man_stepto_y = n1.box_y - direction[i][<span class="number">1</span>];</div><div class="line">			<span class="keyword">if</span> (is_ok(n2.box_x, n2.box_y) &amp;&amp; is_ok(man_stepto_x, man_stepto_y) &amp;&amp; </div><div class="line">				!mark[man_stepto_x][man_stepto_y][n2.box_x][n2.box_y])&#123;</div><div class="line">				<span class="built_in">memset</span>(flag, <span class="number">0</span>, <span class="keyword">sizeof</span>(flag));</div><div class="line">				flag[man_stepto_x][man_stepto_y] = <span class="number">1</span>;</div><div class="line">				flag[n1.box_x][n1.box_y] = <span class="number">1</span>;</div><div class="line">				can_arrive = <span class="number">0</span>;</div><div class="line">				dfs(man_stepto_x, man_stepto_y, n1.man_x, n1.man_y);</div><div class="line">				<span class="keyword">if</span> (can_arrive)&#123;</div><div class="line">					mark[man_stepto_x][man_stepto_y][n2.box_x][n2.box_y] = <span class="number">1</span>;</div><div class="line">					n2.man_x = man_stepto_x;</div><div class="line">					n2.man_y = man_stepto_y;</div><div class="line">					n2.cnt_step = n1.cnt_step + <span class="number">1</span>;</div><div class="line">					q.push(n2);</div><div class="line">				&#125;<span class="comment">//如果dfs后可以到达（can_arrive==true），n2入列，继续bfs</span></div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">	&#125;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"-1"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">	<span class="keyword">return</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>n1,n2,man_stepto的状态如图所示：</p>
+<div align="center"><br><img src="http://i1.piimg.com/567571/957f6c1be4939c3c.png" alt="enter description here"><br></div>
+
+<h4 id="主函数"><a href="#主函数" class="headerlink" title="主函数"></a>主函数</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> T;</div><div class="line">	<span class="built_in">cin</span> &gt;&gt; T;</div><div class="line">	<span class="keyword">while</span> (T--)&#123;</div><div class="line">		<span class="built_in">cin</span> &gt;&gt; rows &gt;&gt; cols;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; rows; i++)</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; cols; j++)&#123;</div><div class="line">			<span class="built_in">cin</span> &gt;&gt; <span class="built_in">map</span>[i][j];</div><div class="line">			<span class="built_in">memset</span>(mark,<span class="number">0</span>,<span class="keyword">sizeof</span>(mark));</div><div class="line">			<span class="keyword">if</span> (<span class="built_in">map</span>[i][j] == BOX_START_POINT)&#123;</div><div class="line">				start_box_x = i;</div><div class="line">				start_box_y = j;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span> (<span class="built_in">map</span>[i][j] == MAN_START_POINT)&#123;</div><div class="line">				start_man_x = i;</div><div class="line">				start_man_y = j;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		bfs();</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> CS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> hdu </tag>
+            
+            <tag> algo </tag>
+            
+            <tag> bfs </tag>
+            
+            <tag> dfs </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[不忘初心，继续前进]]></title>
+      <url>http://taolvezh.cn/2017/05/14/21sr/</url>
+      <content type="html"><![CDATA[<p>生日当天发日志这个习惯还是被我莫名其妙的坚持了下来<br><img src="http://p1.bqimg.com/4851/e3637dd123fe2df7.jpg" alt="enter description here"><br><a id="more"></a></p>
+<p>   <strong>21岁，时间过得真快，在奔三的路上渐行渐远。</strong></p>
+<p>   其实，年龄一大，对生日这个日子真的不会像小时候那样激动了，打算平平淡淡过一天就好的，没想到从起床那一刻开始，各位同学老师家人的祝福响个不停~~</p>
+<p>   写这个文章的确算临时起意，没有前两年想的那么仔细，并没有什么主题。要写的原因一个是想把这个习惯坚持下去，二是给自己的网站骗一下访问量，所以这次如果写的毫无章法请各位dalao不要嫌弃我。（逃</p>
+<p>   <strong>2015.12.4—2016.12.4，一年，足够改变很多。</strong></p>
+<p>   一年前，自己还是一个有点懵懂无知的小鲜肉，还在向学长学姐讨要大学生存之道；<br>   一年后，自己变成了饱谙世故的老油条，已经开始给学弟学妹们指点迷津了。</p>
+<p>   一年前，前途一片大好；<br>   一年后，为了让自己稍微能蹭到点边而忙的焦头烂额（大学遇见不坑的老师很重要~</p>
+<p>   一年前，成为预备党员；<br>   一年后<br>   <img src="http://p1.bpimg.com/4851/2e05ba4fafc0b770.jpg" alt="enter description here"></p>
+<p>   一年前，空间的J20还是想象图；<br>   一年后（骄傲脸<br>   <img src="http://i1.piimg.com/4851/ad17bac3be5748d9.jpg" alt="enter description here"></p>
+<p>   <strong>庆幸于，初心未变</strong></p>
+<p>   和同学聊天，都发现离自己的梦想还很远，我们抱怨这，抱怨那，抱怨着我们能抱怨的着一切，然而这就是成长，它让我们不断的面对一些悲凉的事情，直到知道什么叫世事沧桑。<br>   或许还是内心最深处的声音，鼓励着我，让我一直坚持下去。<br>   无论是半年，一年，还是若干年后…….</p>
+<hr>
+<hr>
+<p>  <strong>愿努力的我们终将收获~</strong></p>
+<hr>
+<p>   谢谢爸妈还有家人。<br>   谢谢张雅斌老师（真的是意外惊喜啊），珏姐的生日祝福（受宠若惊<br>   谢谢大树（还是应该叫彩虹秋裤）几百天来陪我撕逼（逃，谢谢室友带我打守望。<br>   谢谢钱总，捷文，星翰，士轶，段大师，笑天聚聚，万里，陈小振，以及没有nickname而不能把大名放在这里的同学学长学姐学弟学妹们的生日祝福。</p>
+<hr>
+<p>   <strong>重点来了</strong></p>
+<hr>
+<hr>
+<hr>
+<p>   来过留名哦（害羞</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Diary </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 杂谈 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[欢迎]]></title>
+      <url>http://taolvezh.cn/2016/08/04/%E6%AC%A2%E8%BF%8E/</url>
+      <content type="html"><![CDATA[<p>欢迎来到我的博客小站。<br><br><img src="http://ww2.sinaimg.cn/orj480/672ea2eagw1f4qye30g4uj20qo1bf7b5.jpg" alt="enter description here"><br><a id="more"></a></p>
+<p>建立了自己的博客，希望与大家在这里探讨各种技术问题，请多指教~</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Diary </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 杂谈 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+  
+  
+</search>
