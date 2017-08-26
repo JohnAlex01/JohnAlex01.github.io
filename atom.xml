@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://taolvezh.cn/"/>
-  <updated>2017-08-26T03:44:14.717Z</updated>
+  <updated>2017-08-26T04:00:49.342Z</updated>
   <id>http://taolvezh.cn/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://taolvezh.cn/2017/08/26/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B8%B8%E6%88%8F%E5%90%8C%E6%AD%A5%E6%96%B9%E6%A1%88/"/>
     <id>http://taolvezh.cn/2017/08/26/常见的游戏同步方案/</id>
     <published>2017-08-26T02:54:08.000Z</published>
-    <updated>2017-08-26T03:44:14.717Z</updated>
+    <updated>2017-08-26T04:00:49.342Z</updated>
     
     <content type="html"><![CDATA[<p>网络游戏中的同步方案可按以下情况分类：</p>
 <ul>
@@ -95,6 +95,8 @@
 &lt;p&gt;&lt;img src=&quot;http://ov9vevhfj.bkt.clouddn.com/1.png&quot; alt=&quot;常见的同步方案概览&quot;&gt;&lt;br&gt;
     
     </summary>
+    
+      <category term="CS" scheme="http://taolvezh.cn/categories/CS/"/>
     
     
       <category term="CS" scheme="http://taolvezh.cn/tags/CS/"/>
