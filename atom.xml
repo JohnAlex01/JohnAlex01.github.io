@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://taolvezh.cn/"/>
-  <updated>2017-05-14T09:20:29.183Z</updated>
+  <updated>2017-08-26T03:44:14.717Z</updated>
   <id>http://taolvezh.cn/</id>
   
   <author>
@@ -14,6 +14,96 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>常见的游戏同步方案</title>
+    <link href="http://taolvezh.cn/2017/08/26/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B8%B8%E6%88%8F%E5%90%8C%E6%AD%A5%E6%96%B9%E6%A1%88/"/>
+    <id>http://taolvezh.cn/2017/08/26/常见的游戏同步方案/</id>
+    <published>2017-08-26T02:54:08.000Z</published>
+    <updated>2017-08-26T03:44:14.717Z</updated>
+    
+    <content type="html"><![CDATA[<p>网络游戏中的同步方案可按以下情况分类：</p>
+<ul>
+<li><p><strong>同步架构：</strong><br>C/S架构<br>P2P架构</p>
+</li>
+<li><p><strong>同步方式：</strong><br>状态同步<br>帧同步</p>
+</li>
+</ul>
+<p><img src="http://ov9vevhfj.bkt.clouddn.com/1.png" alt="常见的同步方案概览"><br><a id="more"></a></p>
+<hr>
+<h2 id="C-S架构：Client-Server（客户端-服务器）"><a href="#C-S架构：Client-Server（客户端-服务器）" class="headerlink" title="C/S架构：Client-Server（客户端-服务器）"></a>C/S架构：Client-Server（客户端-服务器）</h2><blockquote>
+<p><strong>服务器单独部署，对各个Client提供接入服务，将变化的状态同步给各个Client.</strong></p>
+</blockquote>
+<ul>
+<li>优：客户端需要向服务器发送请求，服务器确认请求有效后向各个客户端发送同步信息可以保证游戏状态保持绝对的一致。</li>
+</ul>
+<ul>
+<li>缺：可能存在客户端最终状态与服务器判定不一致的问题。<br><img src="http://ov9vevhfj.bkt.clouddn.com/2.png" alt="CS架构"></li>
+</ul>
+<h3 id="状态同步"><a href="#状态同步" class="headerlink" title="状态同步"></a>状态同步</h3><blockquote>
+<p><strong>将其他玩家的状态行为同步的方式，一般情况下AI逻辑，技能逻辑，战斗计算都由服务器运算，将运算的结果同步给客户端，同时广播给其他客户端，客户端只需要接受服务器传过来的状态变化，然后更新自己本地的动作状态、Buff状态，位置等就可以</strong></p>
+</blockquote>
+<ul>
+<li><p>应用：<br>MMORPG</p>
+</li>
+<li><p>特点:<br>1.服务器实现大部分游戏逻辑（如AI逻辑，技能逻辑），客户端发送数据，服务器必须判定是否合法，（故作弊成本较高）将结果返回给客户端和其他客户端。<br>2.因为服务器需要转发的东西较多，故流量较大，服务器压力较大。</p>
+</li>
+<li><p>客户端与服务器存在延迟，但是可以通过如下方法来解决：<br>1.输入预测<br>  为了增加本地流畅度，自己进行简单校验后，立即执行命令进行表现。如果server没有校验通过，则使client之前执行的命令无效，即只有表现，没有血量、经验等数值的改变。<br>2.延迟补偿</p>
+</li>
+</ul>
+<h3 id="帧同步"><a href="#帧同步" class="headerlink" title="帧同步"></a>帧同步</h3><blockquote>
+<p><strong>同步操作以帧来计算，同步频率很高；为了实现视觉同步的需求，而实现的客户端高度同步。</strong><br><strong>帧同步不同步状态，只同步指令，所以每个客户端应收到相同的指令集，否则显示的结果不同。故应选择具有重传机制的传输协议，当客户端断线重连后，需要将断线期间所有的指令发送给客户端。（就是有些游戏网络通畅后快进的原因）</strong></p>
+</blockquote>
+<ul>
+<li><h4 id="正常情况：客户端发送数据包，服务器确认后将其与其他所有客户端同步。"><a href="#正常情况：客户端发送数据包，服务器确认后将其与其他所有客户端同步。" class="headerlink" title="正常情况：客户端发送数据包，服务器确认后将其与其他所有客户端同步。"></a>正常情况：客户端发送数据包，服务器确认后将其与其他所有客户端同步。</h4></li>
+</ul>
+<p><img src="http://ov9vevhfj.bkt.clouddn.com/3.png" alt="正常情况"></p>
+<ul>
+<li><h4 id="断线重连：客户端需要接受丢失的包和其他客户端同步。"><a href="#断线重连：客户端需要接受丢失的包和其他客户端同步。" class="headerlink" title="断线重连：客户端需要接受丢失的包和其他客户端同步。"></a>断线重连：客户端需要接受丢失的包和其他客户端同步。</h4></li>
+</ul>
+<p><img src="http://ov9vevhfj.bkt.clouddn.com/4.png" alt="断线重连"></p>
+<ul>
+<li>应用：<br>即时对战游戏（RTS等，dota，王者荣耀等）</li>
+</ul>
+<ul>
+<li>特点：<br>1.客户端进行逻辑运算，服务器仅转发操作逻辑，服务器压力较小；又因为只需同步必须的的数据，所以流量消耗较小。<br>2.游戏逻辑在Client端,安全性较弱（可对比客户端每帧来检查个Clients是否存在不同，检测每帧数据可以很好保证安全性）。</li>
+</ul>
+<hr>
+<h2 id="P2P架构：Point-to-Point（点-点）"><a href="#P2P架构：Point-to-Point（点-点）" class="headerlink" title="P2P架构：Point-to-Point（点-点）"></a>P2P架构：Point-to-Point（点-点）</h2><blockquote>
+<p><strong>早期的网络同步模型，一般不需要server参与，即使有server也只是负责转发，客户端在每一帧/每一回合（time step相同）将自己的输入广播给其他客户端，收到所有输入后才在下一帧更新客户端，如果没收齐就一直等待。</strong></p>
+</blockquote>
+<ul>
+<li>优：可以进行叫精密的运算，满足对即时同步游戏的要求</li>
+</ul>
+<ul>
+<li>缺：由于是点到点通信，每个主机可以连接的主机数目有限，适合同屏竞技（玩家数目有限）的游戏，但现在已经较少使用（但是可以运用在C/S架构游戏中的一部分通信中，例如点对点玩家的通信等，可以分担服务器压力）</li>
+<li>延迟取决于网络最差的玩家，导致锁帧的发生、容易作弊.</li>
+<li>应用：早期局域网和RTS游戏</li>
+</ul>
+<p><img src="http://ov9vevhfj.bkt.clouddn.com/5.png" alt="P2P通信"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;网络游戏中的同步方案可按以下情况分类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;同步架构：&lt;/strong&gt;&lt;br&gt;C/S架构&lt;br&gt;P2P架构&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;同步方式：&lt;/strong&gt;&lt;br&gt;状态同步&lt;br&gt;帧同步&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;http://ov9vevhfj.bkt.clouddn.com/1.png&quot; alt=&quot;常见的同步方案概览&quot;&gt;&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="CS" scheme="http://taolvezh.cn/tags/CS/"/>
+    
+      <category term="Game" scheme="http://taolvezh.cn/tags/Game/"/>
+    
+      <category term="Network" scheme="http://taolvezh.cn/tags/Network/"/>
+    
+  </entry>
   
   <entry>
     <title>不忘初心，继续前进</title>
@@ -154,9 +244,9 @@
     
       <category term="dp" scheme="http://taolvezh.cn/tags/dp/"/>
     
-      <category term="greedy" scheme="http://taolvezh.cn/tags/greedy/"/>
-    
       <category term="poj" scheme="http://taolvezh.cn/tags/poj/"/>
+    
+      <category term="greedy" scheme="http://taolvezh.cn/tags/greedy/"/>
     
   </entry>
   
@@ -165,7 +255,7 @@
     <link href="http://taolvezh.cn/2016/09/19/nim_game/"/>
     <id>http://taolvezh.cn/2016/09/19/nim_game/</id>
     <published>2016-09-19T09:30:00.000Z</published>
-    <updated>2017-05-14T09:25:23.939Z</updated>
+    <updated>2017-05-14T09:26:00.408Z</updated>
     
     <content type="html"><![CDATA[<p>这是一道简单的推理题<br><img src="http://i1.piimg.com/4851/b42836db996f7dd9.jpg" alt="enter description here"></p>
 <a id="more"></a>
