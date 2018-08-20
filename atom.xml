@@ -269,16 +269,18 @@
     <link href="http://taolvezh.cn/2017/08/26/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B8%B8%E6%88%8F%E5%90%8C%E6%AD%A5%E6%96%B9%E6%A1%88/"/>
     <id>http://taolvezh.cn/2017/08/26/常见的游戏同步方案/</id>
     <published>2017-08-26T02:54:08.000Z</published>
-    <updated>2017-08-26T04:00:49.342Z</updated>
+    <updated>2018-08-20T16:17:44.793Z</updated>
     
-    <content type="html"><![CDATA[<p>网络游戏中的同步方案可按以下情况分类：</p>
+    <content type="html"><![CDATA[<p>根据自己在腾讯实习两个月学到的知识，对网络游戏设计过程中的同步方式进行了介绍，如有不足，尽情指出。</p>
+<a id="more"></a>
+<p>网络游戏中的同步方案可按以下情况分类：</p>
 <ul>
 <li><p><strong>同步架构：</strong><br>C/S架构<br>P2P架构</p>
 </li>
 <li><p><strong>同步方式：</strong><br>状态同步<br>帧同步</p>
 </li>
 </ul>
-<p><img src="http://ov9vevhfj.bkt.clouddn.com/1.png" alt="常见的同步方案概览"><br><a id="more"></a></p>
+<p><img src="http://ov9vevhfj.bkt.clouddn.com/1.png" alt="常见的同步方案概览"></p>
 <hr>
 <h2 id="C-S架构：Client-Server（客户端-服务器）"><a href="#C-S架构：Client-Server（客户端-服务器）" class="headerlink" title="C/S架构：Client-Server（客户端-服务器）"></a>C/S架构：Client-Server（客户端-服务器）</h2><blockquote>
 <p><strong>服务器单独部署，对各个Client提供接入服务，将变化的状态同步给各个Client.</strong></p>
@@ -334,14 +336,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;网络游戏中的同步方案可按以下情况分类：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;同步架构：&lt;/strong&gt;&lt;br&gt;C/S架构&lt;br&gt;P2P架构&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;同步方式：&lt;/strong&gt;&lt;br&gt;状态同步&lt;br&gt;帧同步&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;http://ov9vevhfj.bkt.clouddn.com/1.png&quot; alt=&quot;常见的同步方案概览&quot;&gt;&lt;br&gt;
+      &lt;p&gt;根据自己在腾讯实习两个月学到的知识，对网络游戏设计过程中的同步方式进行了介绍，如有不足，尽情指出。&lt;/p&gt;
     
     </summary>
     
@@ -497,9 +492,9 @@
     
       <category term="dp" scheme="http://taolvezh.cn/tags/dp/"/>
     
-      <category term="greedy" scheme="http://taolvezh.cn/tags/greedy/"/>
-    
       <category term="poj" scheme="http://taolvezh.cn/tags/poj/"/>
+    
+      <category term="greedy" scheme="http://taolvezh.cn/tags/greedy/"/>
     
   </entry>
   
