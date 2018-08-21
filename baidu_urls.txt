@@ -1,1 +1,9 @@
 https://taolvezh.cn/2018/08/21/生成模型/
+https://taolvezh.cn/2018/08/21/神经网络优化方法/
+https://taolvezh.cn/2017/08/26/常见的游戏同步方案/
+https://taolvezh.cn/2016/12/04/21sr/
+https://taolvezh.cn/2016/10/09/POJ 2479 Maximum sum/
+https://taolvezh.cn/2016/09/26/POJ 1065 wooden sticks/
+https://taolvezh.cn/2016/09/19/nim_game/
+https://taolvezh.cn/2016/09/19/hdu1254/
+https://taolvezh.cn/2016/08/04/欢迎/
