@@ -1,3 +1,4 @@
+# hexo robots.txt
 User-agent: *
 Allow: /
 Allow: /archives/
@@ -11,5 +12,5 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
 
-Sitemap: http://www.taolvezh.cn/sitemap.xml
-Sitemap: http://www.taolvezh.cn/baidusitemap.xml
+Sitemap: https://taolvezh.cn/sitemap.xml
+Sitemap: https://taolvezh.cn/baidusitemap.xml
