@@ -364,42 +364,12 @@
 
       
         
-          
-            <a id="more"></a>
-<h3 id="生成模型是无监督学习的一种形式"><a href="#生成模型是无监督学习的一种形式" class="headerlink" title="生成模型是无监督学习的一种形式"></a>生成模型是无监督学习的一种形式</h3><ul>
-<li><p>监督vs无监督学习</p>
-</li>
-<li><p>| -      |    监督学习 | 无监督学习  |<br>| :——–: | :——–:| :–: |<br>|  数据结构  | 数据:(x,y),x是数据，y是标签 |   数据:x,只有数据，没有标签  |<br>|  数据开销 |   训练数据在很多情况下开销很大 | 训练数据开销很低   |<br>|  学习目的 |   获得x到y的映射 | 获得数据的一些隐藏结构   |<br>|  举例 |   分类，回归，目标检测，语义分割，图片字幕 | 特征学习，密度估计，聚类，降维   |</p>
-</li>
-<li><p>自动编码器（Autoencoders）是一种对特征进行学习的技巧</p>
-<ul>
-<li><img src="https://github.com/mbadry1/CS231n-2017-Summary/raw/master/Images/24.png" alt="自动编码器"></li>
-<li>它包括了编码器和解码器，编码器对图片进行下采样，解码器对特征进行上采样</li>
-<li>损失是L2损失</li>
-</ul>
-</li>
-<li><p>密度估计（Density estimation）是我们通过样本对数据整体分布的估计</p>
-</li>
-<li>生成模型<ul>
-<li>给予训练数据，从相同的分布中生成新的样本</li>
-<li>密度估计（Density estimation）是无监督学习中核心的问题<ul>
-<li>显式密度估计：对学习模型显式地定义和求解</li>
-<li>无需显式的定义便可以从学习模型中抽样而而确定的模型</li>
-</ul>
-</li>
-<li>生成模型的优点<ul>
-<li>Realistic samples for artwork, super-resolution, colorization, etc</li>
-<li>时间序列数据的生成模型可以用于模拟和规划</li>
-<li>生成模型可以用于推断一般特征的潜在表示（Training generative models can also enable inference of latent representations that can be useful as general features）</li>
-</ul>
-</li>
-<li>生成模型的分类<img src="https://github.com/mbadry1/CS231n-2017-Summary/raw/master/Images/52.png" alt="生成模型的分类"></li>
-</ul>
-</li>
-</ul>
-<hr>
-<h3 id="PixelRNN-和-PixelCNN"><a href="#PixelRNN-和-PixelCNN" class="headerlink" title="PixelRNN 和 PixelCNN"></a>PixelRNN 和 PixelCNN</h3>
-          
+          <p>本文是对斯坦福CS231n课程中生成模型的笔记，如有不足，尽请指出。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2018/08/21/生成模型/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>

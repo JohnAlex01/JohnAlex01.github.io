@@ -86,19 +86,19 @@
 
 
 
-<meta name="description" content="生成模型是无监督学习的一种形式 监督vs无监督学习  | -      |    监督学习 | 无监督学习  || :——–: | :——–:| :–: ||  数据结构  | 数据:(x,y),x是数据，y是标签 |   数据:x,只有数据，没有标签  ||  数据开销 |   训练数据在很多情况下开销很大 | 训练数据开销很低   ||  学习目的 |   获得x到y的映射 | 获得数据的一">
+<meta name="description" content="本文是对斯坦福CS231n课程中生成模型的笔记，如有不足，尽请指出。">
 <meta name="keywords" content="无监督学习,深度学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS231n 学习笔记——生成模型">
 <meta property="og:url" content="http://taolvezh.cn/2018/08/21/生成模型/index.html">
 <meta property="og:site_name" content="一路向北">
-<meta property="og:description" content="生成模型是无监督学习的一种形式 监督vs无监督学习  | -      |    监督学习 | 无监督学习  || :——–: | :——–:| :–: ||  数据结构  | 数据:(x,y),x是数据，y是标签 |   数据:x,只有数据，没有标签  ||  数据开销 |   训练数据在很多情况下开销很大 | 训练数据开销很低   ||  学习目的 |   获得x到y的映射 | 获得数据的一">
+<meta property="og:description" content="本文是对斯坦福CS231n课程中生成模型的笔记，如有不足，尽请指出。">
 <meta property="og:image" content="https://github.com/mbadry1/CS231n-2017-Summary/raw/master/Images/24.png">
 <meta property="og:image" content="https://github.com/mbadry1/CS231n-2017-Summary/raw/master/Images/52.png">
-<meta property="og:updated_time" content="2018-08-21T03:12:59.774Z">
+<meta property="og:updated_time" content="2018-08-21T03:26:20.749Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CS231n 学习笔记——生成模型">
-<meta name="twitter:description" content="生成模型是无监督学习的一种形式 监督vs无监督学习  | -      |    监督学习 | 无监督学习  || :——–: | :——–:| :–: ||  数据结构  | 数据:(x,y),x是数据，y是标签 |   数据:x,只有数据，没有标签  ||  数据开销 |   训练数据在很多情况下开销很大 | 训练数据开销很低   ||  学习目的 |   获得x到y的映射 | 获得数据的一">
+<meta name="twitter:description" content="本文是对斯坦福CS231n课程中生成模型的笔记，如有不足，尽请指出。">
 <meta name="twitter:image" content="https://github.com/mbadry1/CS231n-2017-Summary/raw/master/Images/24.png">
 
 
@@ -363,12 +363,43 @@
       
 
       
-        <a id="more"></a>
-<h3 id="生成模型是无监督学习的一种形式"><a href="#生成模型是无监督学习的一种形式" class="headerlink" title="生成模型是无监督学习的一种形式"></a>生成模型是无监督学习的一种形式</h3><ul>
-<li><p>监督vs无监督学习</p>
-</li>
-<li><p>| -      |    监督学习 | 无监督学习  |<br>| :——–: | :——–:| :–: |<br>|  数据结构  | 数据:(x,y),x是数据，y是标签 |   数据:x,只有数据，没有标签  |<br>|  数据开销 |   训练数据在很多情况下开销很大 | 训练数据开销很低   |<br>|  学习目的 |   获得x到y的映射 | 获得数据的一些隐藏结构   |<br>|  举例 |   分类，回归，目标检测，语义分割，图片字幕 | 特征学习，密度估计，聚类，降维   |</p>
-</li>
+        <p>本文是对斯坦福CS231n课程中生成模型的笔记，如有不足，尽请指出。</p>
+<a id="more"></a>
+<h3 id="生成模型是无监督学习的一种类型"><a href="#生成模型是无监督学习的一种类型" class="headerlink" title="生成模型是无监督学习的一种类型"></a>生成模型是无监督学习的一种类型</h3><ul>
+<li>监督vs无监督学习</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">-</th>
+<th style="text-align:center">监督学习</th>
+<th style="text-align:center">无监督学习</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">数据结构</td>
+<td style="text-align:center">数据:(x,y),x是数据，y是标签</td>
+<td style="text-align:center">数据:x,只有数据，没有标签</td>
+</tr>
+<tr>
+<td style="text-align:center">数据开销</td>
+<td style="text-align:center">训练数据在很多情况下开销很大</td>
+<td style="text-align:center">训练数据开销很低</td>
+</tr>
+<tr>
+<td style="text-align:center">学习目的</td>
+<td style="text-align:center">获得x到y的映射</td>
+<td style="text-align:center">获得数据的一些隐藏结构</td>
+</tr>
+<tr>
+<td style="text-align:center">举例</td>
+<td style="text-align:center">分类，回归，目标检测，语义分割，图片字幕</td>
+<td style="text-align:center">特征学习，密度估计，聚类，降维</td>
+</tr>
+</tbody>
+</table>
+<ul>
 <li><p>自动编码器（Autoencoders）是一种对特征进行学习的技巧</p>
 <ul>
 <li><img src="https://github.com/mbadry1/CS231n-2017-Summary/raw/master/Images/24.png" alt="自动编码器"></li>
@@ -583,7 +614,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成模型是无监督学习的一种形式"><span class="nav-number">1.</span> <span class="nav-text">生成模型是无监督学习的一种形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PixelRNN-和-PixelCNN"><span class="nav-number">2.</span> <span class="nav-text">PixelRNN 和 PixelCNN</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成模型是无监督学习的一种类型"><span class="nav-number">1.</span> <span class="nav-text">生成模型是无监督学习的一种类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PixelRNN-和-PixelCNN"><span class="nav-number">2.</span> <span class="nav-text">PixelRNN 和 PixelCNN</span></a></li></ol></div>
             
           </div>
         </section>

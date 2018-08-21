@@ -6,12 +6,43 @@
     <entry>
       <title><![CDATA[CS231n 学习笔记——生成模型]]></title>
       <url>http://taolvezh.cn/2018/08/21/%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B/</url>
-      <content type="html"><![CDATA[<a id="more"></a>
-<h3 id="生成模型是无监督学习的一种形式"><a href="#生成模型是无监督学习的一种形式" class="headerlink" title="生成模型是无监督学习的一种形式"></a>生成模型是无监督学习的一种形式</h3><ul>
-<li><p>监督vs无监督学习</p>
-</li>
-<li><p>| -      |    监督学习 | 无监督学习  |<br>| :——–: | :——–:| :–: |<br>|  数据结构  | 数据:(x,y),x是数据，y是标签 |   数据:x,只有数据，没有标签  |<br>|  数据开销 |   训练数据在很多情况下开销很大 | 训练数据开销很低   |<br>|  学习目的 |   获得x到y的映射 | 获得数据的一些隐藏结构   |<br>|  举例 |   分类，回归，目标检测，语义分割，图片字幕 | 特征学习，密度估计，聚类，降维   |</p>
-</li>
+      <content type="html"><![CDATA[<p>本文是对斯坦福CS231n课程中生成模型的笔记，如有不足，尽请指出。</p>
+<a id="more"></a>
+<h3 id="生成模型是无监督学习的一种类型"><a href="#生成模型是无监督学习的一种类型" class="headerlink" title="生成模型是无监督学习的一种类型"></a>生成模型是无监督学习的一种类型</h3><ul>
+<li>监督vs无监督学习</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">-</th>
+<th style="text-align:center">监督学习</th>
+<th style="text-align:center">无监督学习</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">数据结构</td>
+<td style="text-align:center">数据:(x,y),x是数据，y是标签</td>
+<td style="text-align:center">数据:x,只有数据，没有标签</td>
+</tr>
+<tr>
+<td style="text-align:center">数据开销</td>
+<td style="text-align:center">训练数据在很多情况下开销很大</td>
+<td style="text-align:center">训练数据开销很低</td>
+</tr>
+<tr>
+<td style="text-align:center">学习目的</td>
+<td style="text-align:center">获得x到y的映射</td>
+<td style="text-align:center">获得数据的一些隐藏结构</td>
+</tr>
+<tr>
+<td style="text-align:center">举例</td>
+<td style="text-align:center">分类，回归，目标检测，语义分割，图片字幕</td>
+<td style="text-align:center">特征学习，密度估计，聚类，降维</td>
+</tr>
+</tbody>
+</table>
+<ul>
 <li><p>自动编码器（Autoencoders）是一种对特征进行学习的技巧</p>
 <ul>
 <li><img src="https://github.com/mbadry1/CS231n-2017-Summary/raw/master/Images/24.png" alt="自动编码器"></li>
@@ -531,9 +562,9 @@
             
             <tag> dp </tag>
             
-            <tag> greedy </tag>
-            
             <tag> poj </tag>
+            
+            <tag> greedy </tag>
             
         </tags>
         
