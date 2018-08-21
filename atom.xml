@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://taolvezh.cn/"/>
-  <updated>2018-08-20T16:44:46.059Z</updated>
+  <updated>2018-08-21T03:12:59.774Z</updated>
   <id>http://taolvezh.cn/</id>
   
   <author>
@@ -16,11 +16,69 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>神经网络训练技巧</title>
+    <title>CS231n 学习笔记——生成模型</title>
+    <link href="http://taolvezh.cn/2018/08/21/%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B/"/>
+    <id>http://taolvezh.cn/2018/08/21/生成模型/</id>
+    <published>2018-08-21T03:01:36.684Z</published>
+    <updated>2018-08-21T03:12:59.774Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="生成模型是无监督学习的一种形式"><a href="#生成模型是无监督学习的一种形式" class="headerlink" title="生成模型是无监督学习的一种形式"></a>生成模型是无监督学习的一种形式</h3><ul>
+<li><p>监督vs无监督学习</p>
+</li>
+<li><p>| -      |    监督学习 | 无监督学习  |<br>| :——–: | :——–:| :–: |<br>|  数据结构  | 数据:(x,y),x是数据，y是标签 |   数据:x,只有数据，没有标签  |<br>|  数据开销 |   训练数据在很多情况下开销很大 | 训练数据开销很低   |<br>|  学习目的 |   获得x到y的映射 | 获得数据的一些隐藏结构   |<br>|  举例 |   分类，回归，目标检测，语义分割，图片字幕 | 特征学习，密度估计，聚类，降维   |</p>
+</li>
+<li><p>自动编码器（Autoencoders）是一种对特征进行学习的技巧</p>
+<ul>
+<li><img src="https://github.com/mbadry1/CS231n-2017-Summary/raw/master/Images/24.png" alt="自动编码器"></li>
+<li>它包括了编码器和解码器，编码器对图片进行下采样，解码器对特征进行上采样</li>
+<li>损失是L2损失</li>
+</ul>
+</li>
+<li><p>密度估计（Density estimation）是我们通过样本对数据整体分布的估计</p>
+</li>
+<li>生成模型<ul>
+<li>给予训练数据，从相同的分布中生成新的样本</li>
+<li>密度估计（Density estimation）是无监督学习中核心的问题<ul>
+<li>显式密度估计：对学习模型显式地定义和求解</li>
+<li>无需显式的定义便可以从学习模型中抽样而而确定的模型</li>
+</ul>
+</li>
+<li>生成模型的优点<ul>
+<li>Realistic samples for artwork, super-resolution, colorization, etc</li>
+<li>时间序列数据的生成模型可以用于模拟和规划</li>
+<li>生成模型可以用于推断一般特征的潜在表示（Training generative models can also enable inference of latent representations that can be useful as general features）</li>
+</ul>
+</li>
+<li>生成模型的分类<img src="https://github.com/mbadry1/CS231n-2017-Summary/raw/master/Images/52.png" alt="生成模型的分类"></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="PixelRNN-和-PixelCNN"><a href="#PixelRNN-和-PixelCNN" class="headerlink" title="PixelRNN 和 PixelCNN"></a>PixelRNN 和 PixelCNN</h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;生成模型是无监督学习的一种形式&quot;&gt;&lt;a href=&quot;#生成模型是无监督学习的一种形式&quot; class=&quot;headerlink&quot; title=&quot;生成模型是无监督学习的一种形式&quot;&gt;&lt;/a&gt;生成模型是无监督学习的一种形式&lt;/h3&gt;&lt;ul
+    
+    </summary>
+    
+      <category term="CS" scheme="http://taolvezh.cn/categories/CS/"/>
+    
+    
+      <category term="无监督学习" scheme="http://taolvezh.cn/tags/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="深度学习" scheme="http://taolvezh.cn/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CS231n 学习笔记——神经网络训练技巧</title>
     <link href="http://taolvezh.cn/2018/08/21/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/"/>
     <id>http://taolvezh.cn/2018/08/21/神经网络优化方法/</id>
     <published>2018-08-20T16:07:25.688Z</published>
-    <updated>2018-08-20T16:44:46.059Z</updated>
+    <updated>2018-08-21T03:05:00.407Z</updated>
     
     <content type="html"><![CDATA[<p>这是一篇关于训练神经网络时的技巧简章</p>
 <a id="more"></a>
@@ -271,9 +329,9 @@
       <category term="CS" scheme="http://taolvezh.cn/categories/CS/"/>
     
     
-      <category term="神经网络" scheme="http://taolvezh.cn/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
-    
       <category term="深度学习" scheme="http://taolvezh.cn/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="神经网络" scheme="http://taolvezh.cn/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   

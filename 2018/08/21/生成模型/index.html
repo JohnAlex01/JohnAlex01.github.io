@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="无监督学习,深度学习," />
 
 
 
@@ -86,15 +86,20 @@
 
 
 
-<meta name="description" content="Stay hungry,Stay foolish.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="一路向北">
-<meta property="og:url" content="http://taolvezh.cn/archives/2016/10/index.html">
+<meta name="description" content="生成模型是无监督学习的一种形式 监督vs无监督学习  | -      |    监督学习 | 无监督学习  || :——–: | :——–:| :–: ||  数据结构  | 数据:(x,y),x是数据，y是标签 |   数据:x,只有数据，没有标签  ||  数据开销 |   训练数据在很多情况下开销很大 | 训练数据开销很低   ||  学习目的 |   获得x到y的映射 | 获得数据的一">
+<meta name="keywords" content="无监督学习,深度学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS231n 学习笔记——生成模型">
+<meta property="og:url" content="http://taolvezh.cn/2018/08/21/生成模型/index.html">
 <meta property="og:site_name" content="一路向北">
-<meta property="og:description" content="Stay hungry,Stay foolish.">
+<meta property="og:description" content="生成模型是无监督学习的一种形式 监督vs无监督学习  | -      |    监督学习 | 无监督学习  || :——–: | :——–:| :–: ||  数据结构  | 数据:(x,y),x是数据，y是标签 |   数据:x,只有数据，没有标签  ||  数据开销 |   训练数据在很多情况下开销很大 | 训练数据开销很低   ||  学习目的 |   获得x到y的映射 | 获得数据的一">
+<meta property="og:image" content="https://github.com/mbadry1/CS231n-2017-Summary/raw/master/Images/24.png">
+<meta property="og:image" content="https://github.com/mbadry1/CS231n-2017-Summary/raw/master/Images/52.png">
+<meta property="og:updated_time" content="2018-08-21T03:12:59.774Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一路向北">
-<meta name="twitter:description" content="Stay hungry,Stay foolish.">
+<meta name="twitter:title" content="CS231n 学习笔记——生成模型">
+<meta name="twitter:description" content="生成模型是无监督学习的一种形式 监督vs无监督学习  | -      |    监督学习 | 无监督学习  || :——–: | :——–:| :–: ||  数据结构  | 数据:(x,y),x是数据，y是标签 |   数据:x,只有数据，没有标签  ||  数据开销 |   训练数据在很多情况下开销很大 | 训练数据开销很低   ||  学习目的 |   获得x到y的映射 | 获得数据的一">
+<meta name="twitter:image" content="https://github.com/mbadry1/CS231n-2017-Summary/raw/master/Images/24.png">
 
 
 
@@ -115,9 +120,9 @@
 
 
 
-  <link rel="canonical" href="http://taolvezh.cn/archives/2016/10/"/>
+  <link rel="canonical" href="http://taolvezh.cn/2018/08/21/生成模型/"/>
 
-  <title> 归档 | 一路向北 </title>
+  <title> CS231n 学习笔记——生成模型 | 一路向北 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -148,7 +153,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-right  page-archive  ">
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -271,66 +276,205 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 9 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CS231n 学习笔记——生成模型
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-08-21T11:01:36+08:00" content="2018-08-21">
+              2018-08-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/CS/" itemprop="url" rel="index">
+                    <span itemprop="name">CS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/08/21/生成模型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/08/21/生成模型/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <a id="more"></a>
+<h3 id="生成模型是无监督学习的一种形式"><a href="#生成模型是无监督学习的一种形式" class="headerlink" title="生成模型是无监督学习的一种形式"></a>生成模型是无监督学习的一种形式</h3><ul>
+<li><p>监督vs无监督学习</p>
+</li>
+<li><p>| -      |    监督学习 | 无监督学习  |<br>| :——–: | :——–:| :–: |<br>|  数据结构  | 数据:(x,y),x是数据，y是标签 |   数据:x,只有数据，没有标签  |<br>|  数据开销 |   训练数据在很多情况下开销很大 | 训练数据开销很低   |<br>|  学习目的 |   获得x到y的映射 | 获得数据的一些隐藏结构   |<br>|  举例 |   分类，回归，目标检测，语义分割，图片字幕 | 特征学习，密度估计，聚类，降维   |</p>
+</li>
+<li><p>自动编码器（Autoencoders）是一种对特征进行学习的技巧</p>
+<ul>
+<li><img src="https://github.com/mbadry1/CS231n-2017-Summary/raw/master/Images/24.png" alt="自动编码器"></li>
+<li>它包括了编码器和解码器，编码器对图片进行下采样，解码器对特征进行上采样</li>
+<li>损失是L2损失</li>
+</ul>
+</li>
+<li><p>密度估计（Density estimation）是我们通过样本对数据整体分布的估计</p>
+</li>
+<li>生成模型<ul>
+<li>给予训练数据，从相同的分布中生成新的样本</li>
+<li>密度估计（Density estimation）是无监督学习中核心的问题<ul>
+<li>显式密度估计：对学习模型显式地定义和求解</li>
+<li>无需显式的定义便可以从学习模型中抽样而而确定的模型</li>
+</ul>
+</li>
+<li>生成模型的优点<ul>
+<li>Realistic samples for artwork, super-resolution, colorization, etc</li>
+<li>时间序列数据的生成模型可以用于模拟和规划</li>
+<li>生成模型可以用于推断一般特征的潜在表示（Training generative models can also enable inference of latent representations that can be useful as general features）</li>
+</ul>
+</li>
+<li>生成模型的分类<img src="https://github.com/mbadry1/CS231n-2017-Summary/raw/master/Images/52.png" alt="生成模型的分类"></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="PixelRNN-和-PixelCNN"><a href="#PixelRNN-和-PixelCNN" class="headerlink" title="PixelRNN 和 PixelCNN"></a>PixelRNN 和 PixelCNN</h3>
+      
+    </div>
+
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/无监督学习/" rel="tag">#无监督学习</a>
+          
+            <a href="/tags/深度学习/" rel="tag">#深度学习</a>
+          
         </div>
       
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/21/神经网络优化方法/" rel="next" title="CS231n 学习笔记——神经网络训练技巧">
+                <i class="fa fa-chevron-left"></i> CS231n 学习笔记——神经网络训练技巧
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/10/09/POJ 2479 Maximum sum/" itemprop="url">
-              
-                <span itemprop="name">POJ 2479 Maximum sum</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-09T22:35:00+08:00"
-              content="2016-10-09" >
-          10-09
-        </time>
-      </div>
-
-    </header>
+      
+    </footer>
   </article>
 
 
 
-    
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-  </section>
-
-  
-
+      
+    </div>
+  </div>
 
 
           </div>
@@ -338,6 +482,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/08/21/生成模型/"
+           data-title="CS231n 学习笔记——生成模型" data-url="http://taolvezh.cn/2018/08/21/生成模型/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -357,8 +509,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/avatar/zjl.jpg"
@@ -415,6 +576,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成模型是无监督学习的一种形式"><span class="nav-number">1.</span> <span class="nav-text">生成模型是无监督学习的一种形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PixelRNN-和-PixelCNN"><span class="nav-number">2.</span> <span class="nav-text">PixelRNN 和 PixelCNN</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -511,11 +683,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   
