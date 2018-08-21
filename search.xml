@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[CS231n 学习笔记——生成模型]]></title>
-      <url>https://taolvezh.cn/2018/08/21/%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B/</url>
+      <url>https://taolvezh.cn/%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B.html</url>
       <content type="html"><![CDATA[<p>本文是对斯坦福CS231n课程中生成模型的笔记，如有不足，尽请指出。</p>
 <a id="more"></a>
 <h3 id="生成模型是无监督学习的一种类型"><a href="#生成模型是无监督学习的一种类型" class="headerlink" title="生成模型是无监督学习的一种类型"></a>生成模型是无监督学习的一种类型</h3><ul>
@@ -91,7 +91,7 @@
     
     <entry>
       <title><![CDATA[CS231n 学习笔记——神经网络训练技巧]]></title>
-      <url>https://taolvezh.cn/2018/08/21/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/</url>
+      <url>https://taolvezh.cn/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95.html</url>
       <content type="html"><![CDATA[<p>这是一篇关于训练神经网络时的技巧简章</p>
 <a id="more"></a>
 <h2 id="PART-Ⅰ"><a href="#PART-Ⅰ" class="headerlink" title="PART Ⅰ"></a>PART Ⅰ</h2><ol>
@@ -351,7 +351,7 @@
     
     <entry>
       <title><![CDATA[常见的游戏同步方案]]></title>
-      <url>https://taolvezh.cn/2017/08/26/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B8%B8%E6%88%8F%E5%90%8C%E6%AD%A5%E6%96%B9%E6%A1%88/</url>
+      <url>https://taolvezh.cn/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B8%B8%E6%88%8F%E5%90%8C%E6%AD%A5%E6%96%B9%E6%A1%88.html</url>
       <content type="html"><![CDATA[<p>根据自己在腾讯实习两个月学到的知识，对网络游戏设计过程中的同步方式进行了介绍，如有不足，尽请指出。</p>
 <a id="more"></a>
 <p>网络游戏中的同步方案可按以下情况分类：</p>
@@ -436,7 +436,7 @@
     
     <entry>
       <title><![CDATA[不忘初心，继续前进]]></title>
-      <url>https://taolvezh.cn/2016/12/04/21sr/</url>
+      <url>https://taolvezh.cn/21sr.html</url>
       <content type="html"><![CDATA[<p>生日当天发日志这个习惯还是被我莫名其妙的坚持了下来</p>
 <p><img src="http://ov9vevhfj.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20170826115458.png" alt="enter description here"><a id="more"></a><br>   <strong>21岁，时间过得真快，在奔三的路上渐行渐远。</strong></p>
 <p>   其实，年龄一大，对生日这个日子真的不会像小时候那样激动了，打算平平淡淡过一天就好的，没想到从起床那一刻开始，各位同学老师家人的祝福响个不停~~</p>
@@ -478,7 +478,7 @@
     
     <entry>
       <title><![CDATA[POJ 2479 Maximum sum]]></title>
-      <url>https://taolvezh.cn/2016/10/09/POJ%202479%20Maximum%20sum/</url>
+      <url>https://taolvezh.cn/POJ%202479%20Maximum%20sum.html</url>
       <content type="html"><![CDATA[<p>动态规划(Dynamic Programming)中关于最大子序列问题的变形。<br><a id="more"></a></p>
 <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><ul>
 <li>原题地址:        <a href="http://poj.org/problem?id=2479" target="_blank" rel="noopener">POJ 2479</a></li>
@@ -534,7 +534,7 @@
     
     <entry>
       <title><![CDATA[POJ 1065 Wooden Sticks]]></title>
-      <url>https://taolvezh.cn/2016/09/26/POJ%201065%20wooden%20sticks/</url>
+      <url>https://taolvezh.cn/POJ%201065%20wooden%20sticks.html</url>
       <content type="html"><![CDATA[<p>一道既能用动态规划(Dynamic Programming)，也能用贪心(Greedy)求解的问题。<br><img src="http://www.feizl.com/upload2007/2015_05/15050910458129.jpg" alt="enter description here"><br><a id="more"></a></p>
 <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><ul>
 <li>原题地址:    <a href="http://poj.org/problem?id=1065" target="_blank" rel="noopener">POJ 1065</a></li>
@@ -572,7 +572,7 @@
     
     <entry>
       <title><![CDATA[LeetCode-Nim Game解题思路]]></title>
-      <url>https://taolvezh.cn/2016/09/19/nim_game/</url>
+      <url>https://taolvezh.cn/nim_game.html</url>
       <content type="html"><![CDATA[<p>这是一道简单的推理题</p>
 <a id="more"></a>
 <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>You are playing the following Nim Game with your friend: There is a heap of stones on the table, each time one of you take turns to remove 1 to 3 stones. The one who removes the last stone will be the winner. You will take the first turn to remove the stones.</p>
@@ -607,7 +607,7 @@
     
     <entry>
       <title><![CDATA[HDU 1254 推箱子]]></title>
-      <url>https://taolvezh.cn/2016/09/19/hdu1254/</url>
+      <url>https://taolvezh.cn/hdu1254.html</url>
       <content type="html"><![CDATA[<p>推箱子是一个很经典的游戏.今天我们来玩一个简单版本.<br><a id="more"></a></p>
 <h3 id="推箱子"><a href="#推箱子" class="headerlink" title="推箱子"></a>推箱子</h3><p>Time Limit: 2000/1000 MS (Java/Others)<br>Memory Limit: 65536/32768 K (Java/Others)</p>
 <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>在一个M*N的房间里有一个箱子和一个搬运工,搬运工的工作就是把箱子推到指定的位置,注意,搬运工只能推箱子而不能拉箱子,因此如果箱子被推到一个角上(如图2)那么箱子就不能再被移动了,如果箱子被推到一面墙上,那么箱子只能沿着墙移动.</p>
@@ -661,7 +661,7 @@
     
     <entry>
       <title><![CDATA[欢迎]]></title>
-      <url>https://taolvezh.cn/2016/08/04/%E6%AC%A2%E8%BF%8E/</url>
+      <url>https://taolvezh.cn/%E6%AC%A2%E8%BF%8E.html</url>
       <content type="html"><![CDATA[<p>欢迎来到我的博客小站。<br><br><img src="http://ww2.sinaimg.cn/orj480/672ea2eagw1f4qye30g4uj20qo1bf7b5.jpg" alt="enter description here"><br><a id="more"></a></p>
 <p>建立了自己的博客，希望与大家在这里探讨各种技术问题，请多指教~</p>
 ]]></content>

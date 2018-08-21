@@ -108,20 +108,22 @@
 
 
 
-  <meta name="description" content="这是一篇关于训练神经网络时的技巧简章">
-<meta name="keywords" content="深度学习,神经网络">
+  <meta name="description" content="生日当天发日志这个习惯还是被我莫名其妙的坚持了下来">
+<meta name="keywords" content="杂谈">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CS231n 学习笔记——神经网络训练技巧">
-<meta property="og:url" content="https://taolvezh.cn/2018/08/21/神经网络优化方法/index.html">
+<meta property="og:title" content="不忘初心，继续前进">
+<meta property="og:url" content="https://taolvezh.cn/21sr.html">
 <meta property="og:site_name" content="Taolvezh">
-<meta property="og:description" content="这是一篇关于训练神经网络时的技巧简章">
+<meta property="og:description" content="生日当天发日志这个习惯还是被我莫名其妙的坚持了下来">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://images2018.cnblogs.com/blog/1192699/201804/1192699-20180407142956288-903484055.png">
-<meta property="og:updated_time" content="2018-08-21T03:23:43.954Z">
+<meta property="og:image" content="http://ov9vevhfj.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20170826115458.png">
+<meta property="og:image" content="http://ov9vevhfj.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20170826115516.png">
+<meta property="og:image" content="http://ov9vevhfj.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20170826115527.png">
+<meta property="og:updated_time" content="2017-08-26T03:57:31.069Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CS231n 学习笔记——神经网络训练技巧">
-<meta name="twitter:description" content="这是一篇关于训练神经网络时的技巧简章">
-<meta name="twitter:image" content="https://images2018.cnblogs.com/blog/1192699/201804/1192699-20180407142956288-903484055.png">
+<meta name="twitter:title" content="不忘初心，继续前进">
+<meta name="twitter:description" content="生日当天发日志这个习惯还是被我莫名其妙的坚持了下来">
+<meta name="twitter:image" content="http://ov9vevhfj.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20170826115458.png">
 
 
 
@@ -130,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="https://taolvezh.cn/2018/08/21/神经网络优化方法/"/>
+  <link rel="canonical" href="https://taolvezh.cn/21sr.html"/>
 
 
 
@@ -140,7 +142,7 @@
   };
 </script>
 
-  <title>CS231n 学习笔记——神经网络训练技巧 | Taolvezh</title>
+  <title>不忘初心，继续前进 | Taolvezh</title>
   
 
 
@@ -323,7 +325,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://taolvezh.cn/2018/08/21/神经网络优化方法/">
+    <link itemprop="mainEntityOfPage" href="https://taolvezh.cn/21sr.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JohnAlex">
@@ -340,7 +342,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CS231n 学习笔记——神经网络训练技巧
+          <h1 class="post-title" itemprop="name headline">不忘初心，继续前进
               
             
           </h1>
@@ -365,12 +367,24 @@
                 
               
 
-              <time title="创建时间：2018-08-21 00:07:25 / 修改时间：11:23:43" itemprop="dateCreated datePublished" datetime="2018-08-21T00:07:25+08:00">2018-08-21</time>
+              <time title="创建时间：2016-12-04 21:23:39" itemprop="dateCreated datePublished" datetime="2016-12-04T21:23:39+08:00">2016-12-04</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2017-08-26 11:57:31" itemprop="dateModified" datetime="2017-08-26T11:57:31+08:00">2017-08-26</time>
               
             
           </span>
@@ -387,7 +401,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a></span>
 
                 
                 
@@ -429,244 +443,28 @@
       
 
       
-        <p>这是一篇关于训练神经网络时的技巧简章</p>
-<a id="more"></a>
-<h2 id="PART-Ⅰ"><a href="#PART-Ⅰ" class="headerlink" title="PART Ⅰ"></a>PART Ⅰ</h2><ol>
-<li><p>权重初始化</p>
-<ul>
-<li>当权重都初始为0时：<ul>
-<li>所有的神经元都会做一件事，它们会有相同的梯度并且更新相同</li>
-<li>So if W’s of a specific layer is equal the thing described happened </li>
-</ul>
-</li>
-<li><p>将w初始化为较小的随机数</p>
-<ul>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">W = 0.01 * np.random.rand(D, H)</span><br><span class="line"># Works OK for small networks but it makes problems with deeper networks</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>注：标准差会在深层的网络中趋近于0，并且梯度也会消失</p>
-<ul>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">W = 1 * np.random.rand(D, H) </span><br><span class="line"># Works OK for small networks but it makes problems with deeper networks</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>注：网络会因为较大的w而激增.</p>
-</li>
-</ul>
-<ul>
-<li>Xvaier初始化<ol>
-<li><code>W = np.random.rand(in, out) / np.sqrt(in)</code></li>
-<li>输入的方差会是我们输出的方差</li>
-<li>但是我们使用RELU时会崩溃</li>
-</ol>
-</li>
-<li>He初始化<ol>
-<li><code>W = np.random.rand(in, out) / np.sqrt(in/2)</code></li>
-<li>使用relu时推荐使用此方法</li>
-</ol>
-</li>
-<li>初始化是一个活跃的研究领域 </li>
-</ul>
+        <p>生日当天发日志这个习惯还是被我莫名其妙的坚持了下来</p>
+<p><img src="http://ov9vevhfj.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20170826115458.png" alt="enter description here"><a id="more"></a><br>   <strong>21岁，时间过得真快，在奔三的路上渐行渐远。</strong></p>
+<p>   其实，年龄一大，对生日这个日子真的不会像小时候那样激动了，打算平平淡淡过一天就好的，没想到从起床那一刻开始，各位同学老师家人的祝福响个不停~~</p>
+<p>   写这个文章的确算临时起意，没有前两年想的那么仔细，并没有什么主题。要写的原因一个是想把这个习惯坚持下去，二是给自己的网站骗一下访问量，所以这次如果写的毫无章法请各位dalao不要嫌弃我。（逃</p>
+<p>   <strong>2015.12.4—2016.12.4，一年，足够改变很多。</strong></p>
+<p>   一年前，自己还是一个有点懵懂无知的小鲜肉，还在向学长学姐讨要大学生存之道；<br>   一年后，自己变成了饱谙世故的老油条，已经开始给学弟学妹们指点迷津了。</p>
+<p>   一年前，前途一片大好；<br>   一年后，为了让自己稍微能蹭到点边而忙的焦头烂额（大学遇见不坑的老师很重要~</p>
+<p>   一年前，成为预备党员；<br>   一年后<br>   <img src="http://ov9vevhfj.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20170826115516.png" alt="enter description here"></p>
+<p>   一年前，空间的J20还是想象图；<br>   一年后（骄傲脸<br>   <img src="http://ov9vevhfj.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20170826115527.png" alt="enter description here"></p>
+<p>   <strong>庆幸于，初心未变</strong></p>
+<p>   和同学聊天，都发现离自己的梦想还很远，我们抱怨这，抱怨那，抱怨着我们能抱怨的着一切，然而这就是成长，它让我们不断的面对一些悲凉的事情，直到知道什么叫世事沧桑。<br>   或许还是内心最深处的声音，鼓励着我，让我一直坚持下去。<br>   无论是半年，一年，还是若干年后…….</p>
 <hr>
-</li>
-<li>批标准化<ul>
-<li>是一种使神经网络任意层输入服从零均值/单位方差的方法。</li>
-<li>加速训练，是 Sergey Ioffe和Christian Szegedy在2015年提出的方法</li>
-<li>我们在每一层使用高斯激活（通过计算均值和方差）</li>
-<li>通常在全连接层或者卷积层前使用（在非线性化前）</li>
-<li>过程:<img src="https://images2018.cnblogs.com/blog/1192699/201804/1192699-20180407142956288-903484055.png" alt="批标准化过程"></li>
-<li>使得每一层更加灵活（选择希望的分布）</li>
-<li>初始化批标准化参数使输入转换为服从零均值/单位方差的分布，在训练中可以更好地学习其他样式的分布</li>
-<li>我们需要使用加权平均值对每一层计算全局均值和全局方差。</li>
-<li>批标准化的优点：<ol>
-<li>训练更快</li>
-<li>允许较高的学习率</li>
-<li>降低了初始权重的敏感性</li>
-<li>使更多的激励函数可行</li>
-<li>提供一些正则化：我们计算了每个batch的均值和方差，使其有了正则化效果</li>
-</ol>
-</li>
-<li>在卷积层，我们会有一个方差和一个均值在每个activation map 中。</li>
-<li>批标准化在卷积网络和深层的神经网络中效果很好，但是对于循环神经网络和加强学习依旧是一个活跃的研究领域</li>
-</ul>
 <hr>
-</li>
-<li>学习过程中的Baby sitting<ul>
-<li>对数据进行预处理</li>
-<li>选择架构</li>
-<li>做一次前向传播并检查损失（Disable regularization），检查损失是否合理。</li>
-<li>使正则化，损失会变大</li>
-</ul>
+<p>  <strong>愿努力的我们终将收获~</strong></p>
 <hr>
-</li>
-<li>超参数优化<ul>
-<li>尝试交叉验证策略（运行若干epoch后，尝试优化范围）</li>
-<li>最好在log space中优化</li>
-<li>调整范围再次尝试</li>
-<li>尝试随机搜素而不是顺序搜索（在log space中）</li>
-</ul>
-</li>
-</ol>
-<h2 id="PATR-Ⅱ"><a href="#PATR-Ⅱ" class="headerlink" title="PATR Ⅱ"></a>PATR Ⅱ</h2><ol>
-<li><p>优化算法</p>
-<ul>
-<li>随机梯度下降存在的问题：<ul>
-<li>在有两个变量的情况下，如果损失一快一慢，那么你会在shallow的维度上进展缓慢，在steep的方向上抖动。神经网络上有更多的参数那么会造成更多的问题。</li>
-<li>局部最小值和鞍点<ul>
-<li>如果SGD使参数在局部最小值，参数便会停止更新因为梯度已经变为0。</li>
-<li>鞍点同上。</li>
-<li>鞍点指的是：<ul>
-<li>当驻点的距离左右两边的△x距离的f′(x)=都小于0或都大于0,则该驻点是鞍点。 </li>
-<li>在这个的点上，向一些梯度运动会使损失增加，向另一些梯度运动导致损失减少。</li>
-<li>更多地发生在高维上（例如：100,000,000）。</li>
-</ul>
-</li>
-<li>由于更高的维度，深度神经网络更多的问题使鞍点而不是局部最小值。</li>
-<li>因为没有使用整个批量，mini batch存在noisy。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>随机梯度下降（SGD）+动量（momentum）</p>
-<ul>
-<li>Build up velocity as a running mean of gradients</li>
-<li><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Computing weighted average. rho best is in range [0.9 - 0.99]</span></span><br><span class="line">     V[t+<span class="number">1</span>] = rho * v[t] + dx</span><br><span class="line">     x[t+<span class="number">1</span>] = x[t] - learningRate * V[t+<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>V[0]是0</p>
-</li>
-<li>可以解决局部最小值和鞍点的问题</li>
-<li>It overshoots the problem and returns to it back</li>
-</ul>
-</li>
-<li><p>牛顿动量（Nestrov momentum）</p>
-<ul>
-<li><p>伪代码： </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dx = compute_gradient(x)</span><br><span class="line">old_v = v</span><br><span class="line">   v = rho * v - learning_rate * dx</span><br><span class="line">x+= -rho * old_v + (<span class="number">1</span>+rho) * v</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Doesn’t overshoot the problem 但是比 随机梯度下降（SGD）+动量（momentum）慢。</p>
-</li>
-</ul>
-</li>
-<li><p>AdaGrad</p>
-<ul>
-<li><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">grad_squared = <span class="number">0</span></span><br><span class="line">   <span class="keyword">while</span>(<span class="keyword">True</span>):</span><br><span class="line">dx = compute_gradient(x)</span><br><span class="line">      <span class="comment"># here is a problem, the grad_squared isn't decayed (gets so large)</span></span><br><span class="line">grad_squared += dx * dx			</span><br><span class="line">x -= (learning_rate*dx) / (np.sqrt(grad_squared) + <span class="number">1e-7</span>)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>RMSProp</p>
-<ul>
-<li><p>伪代码：</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">grad_squared = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">True</span>):</span><br><span class="line"> dx = compute_gradient(x)</span><br><span class="line"> <span class="comment">#Solved ADAgra</span></span><br><span class="line"> grad_squared = decay_rate * grad_squared + (<span class="number">1</span>-grad_squared) * dx * dx  </span><br><span class="line"> x -= (learning_rate*dx) / (np.sqrt(grad_squared) + <span class="number">1e-7</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>一般以此来代替AdaGrad</p>
-</li>
-</ul>
-</li>
-<li>Adam<ul>
-<li>计算动量和RMSProp作为梯度</li>
-<li>需要Fixing Bias作为起始的梯度</li>
-<li>是目前最好的方法</li>
-<li>beta1=0.9，beta2=0.999；学习率=1e-3或者5e-4对于大部分模型来说最好的初始值。</li>
-</ul>
-</li>
-<li>学习率衰减（Learning decay）<ul>
-<li>每过若干epoch将学习率减半</li>
-<li>防止学习率反弹（bounce out）</li>
-<li>学习率衰减常用于随机梯度下降（SGD）+动量（momentum）而不是Adam</li>
-<li>不要一开始选择超参数时就使用学习率衰减，首先应该检查其必要性。</li>
-</ul>
-</li>
-<li>以上所有算法均是一阶优化算法</li>
-<li>二阶优化算法<ul>
-<li>略</li>
-</ul>
-</li>
-</ul>
+<p>   谢谢爸妈还有家人。<br>   谢谢张雅斌老师（真的是意外惊喜啊），珏姐的生日祝福（受宠若惊<br>   谢谢大树（还是应该叫彩虹秋裤）几百天来陪我撕逼（逃，谢谢室友带我打守望。<br>   谢谢钱总，捷文，星翰，士轶，段大师，笑天聚聚，万里，陈小振，以及没有nickname而不能把大名放在这里的同学学长学姐学弟学妹们的生日祝福。</p>
 <hr>
-</li>
-<li><p>正则化（Regularization）</p>
-<ul>
-<li>到目前为止我们讨论的更多是减少训练误差，但是更应该关注模型如何处理未知数据。</li>
-<li>训练集和验证集之间error差别过大 被称为 高方差（high variance）</li>
-<li>模型融合（Model Ensembles）：<ul>
-<li>算法：<ul>
-<li>训练多个独立的模型（same architecture，different initializations.）</li>
-<li>测试时平均（融合）它们的结果</li>
-</ul>
-</li>
-<li>会提高2%的效果</li>
-<li>减少了泛化误差</li>
-<li>您可以在训练时使用神经网络的一些snapshot来合并它们并获取结果</li>
-</ul>
-</li>
-<li>正则化解决了高方差问题，包括L1,L2正则化</li>
-<li>一些针对神经网络设计的正则化技巧会有更好的效果</li>
-<li>随机失活（Drop out）：<ul>
-<li>每次前向传播，随机将一些神经元设置为0。失活概率是一个超参数，且一般设置为0.5。</li>
-<li>原因：<ul>
-<li>强迫网络具有冗余表示（redundant representation）；防止特征的共同适应（ co-adaption）。</li>
-<li>在一个model中融合（ensemble）了多个model。</li>
-</ul>
-</li>
-<li>测试时我们使用失活层 乘以 随机失活概率，但是有时不乘这个概率。</li>
-<li>使用随机失活训练会更花时间。</li>
-</ul>
-</li>
-<li>数据增强（Data augmentation）：<ul>
-<li>改变数据，例如：裁剪图片，旋转图片。</li>
-<li>在ResNet中：<ul>
-<li>略</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Drop connect<ul>
-<li>类似随机失活，正则化。</li>
-<li>使权重随机置0。</li>
-</ul>
-</li>
-<li>随机深度(Stochastic depth)<ul>
-<li>消除网络层而不是神经元，类似于DropOut。</li>
-</ul>
-</li>
-</ul>
+<p>   <strong>重点来了</strong></p>
 <hr>
-</li>
-<li>迁移学习 （Transfer learning）<ul>
-<li>为了解决数据量不足的问题</li>
-<li>步骤：<ul>
-<li>使用大量具有普遍特征的数据集去训练。（预训练）</li>
-<li>冻结除了最有一层的所有层，并以此来训练效地数据集。</li>
-<li>不仅是最后一层，你可以根据你拥有的数据来选择不冻结哪些层。</li>
-</ul>
-</li>
-<li>迁移学习指南</li>
-</ul>
-</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">-</th>
-<th style="text-align:center">很相似的数据集</th>
-<th style="text-align:center">不相似的数据集</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">小量数据集</td>
-<td style="text-align:center">在顶层使用线性分类器</td>
-<td style="text-align:center">尝试线性分类器from different stages</td>
-</tr>
-<tr>
-<td style="text-align:center">大量数据集</td>
-<td style="text-align:center">微调（finetune）少量层</td>
-<td style="text-align:center">微调（Finetune）大量层</td>
-</tr>
-</tbody>
-</table>
 <hr>
+<hr>
+<p>   来过留名哦（害羞</p>
 
       
     </div>
@@ -711,9 +509,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/深度学习/" rel="tag"># 深度学习</a>
-          
-            <a href="/tags/神经网络/" rel="tag"># 神经网络</a>
+            <a href="/tags/杂谈/" rel="tag"># 杂谈</a>
           
         </div>
       
@@ -726,8 +522,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/26/常见的游戏同步方案/" rel="next" title="常见的游戏同步方案">
-                <i class="fa fa-chevron-left"></i> 常见的游戏同步方案
+              <a href="/POJ 2479 Maximum sum.html" rel="next" title="POJ 2479 Maximum sum">
+                <i class="fa fa-chevron-left"></i> POJ 2479 Maximum sum
               </a>
             
           </div>
@@ -736,8 +532,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/21/生成模型/" rel="prev" title="CS231n 学习笔记——生成模型">
-                CS231n 学习笔记——生成模型 <i class="fa fa-chevron-right"></i>
+              <a href="/常见的游戏同步方案.html" rel="prev" title="常见的游戏同步方案">
+                常见的游戏同步方案 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -788,17 +584,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -910,22 +697,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PART-Ⅰ"><span class="nav-number">1.</span> <span class="nav-text">PART Ⅰ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PATR-Ⅱ"><span class="nav-number">2.</span> <span class="nav-text">PATR Ⅱ</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
