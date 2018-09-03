@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/resizeApi32.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/resizeApi16.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.0',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="&amp;emsp;&amp;emsp;使用matplotlib和pandas对2018届以及近三年SCUT的推免数据进行简单分析，希望对了解华工今年推免数据和学习matplotlib的同学有所帮助。&amp;emsp;&amp;emsp;如有不足，尽请指出。">
+<meta name="keywords" content="数据分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用matplotlib和pandas对华南理工大学2018届以及近三年推免数据进行分析">
+<meta property="og:url" content="https://taolvezh.cn/华南理工大学2018届推免数据分析.html">
+<meta property="og:site_name" content="Taolvezh">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;使用matplotlib和pandas对2018届以及近三年SCUT的推免数据进行简单分析，希望对了解华工今年推免数据和学习matplotlib的同学有所帮助。&amp;emsp;&amp;emsp;如有不足，尽请指出。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://ov9vevhfj.bkt.clouddn.com/2018datadescribe.png">
+<meta property="og:image" content="http://ov9vevhfj.bkt.clouddn.com/2018data_school.png">
+<meta property="og:image" content="http://ov9vevhfj.bkt.clouddn.com/2018datatotalbar.png">
+<meta property="og:image" content="http://ov9vevhfj.bkt.clouddn.com/2018datatotalpie.png">
+<meta property="og:image" content="http://ov9vevhfj.bkt.clouddn.com/2018data_institute_stu_num.png">
+<meta property="og:image" content="http://ov9vevhfj.bkt.clouddn.com/2018data_institute_stu_radio.png">
+<meta property="og:image" content="http://ov9vevhfj.bkt.clouddn.com/2018datacspie.png">
+<meta property="og:image" content="http://ov9vevhfj.bkt.clouddn.com/2018datacsbar.png">
+<meta property="og:image" content="http://ov9vevhfj.bkt.clouddn.com/2018datacs_stupie.png">
+<meta property="og:image" content="http://ov9vevhfj.bkt.clouddn.com/20162018datadescribe.png">
+<meta property="og:image" content="http://ov9vevhfj.bkt.clouddn.com/20162018datatotal.png">
+<meta property="og:image" content="http://ov9vevhfj.bkt.clouddn.com/20162018datacstotal.png">
+<meta property="og:updated_time" content="2018-09-03T04:22:02.591Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用matplotlib和pandas对华南理工大学2018届以及近三年推免数据进行分析">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;使用matplotlib和pandas对2018届以及近三年SCUT的推免数据进行简单分析，希望对了解华工今年推免数据和学习matplotlib的同学有所帮助。&amp;emsp;&amp;emsp;如有不足，尽请指出。">
+<meta name="twitter:image" content="http://ov9vevhfj.bkt.clouddn.com/2018datadescribe.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Taolvezh" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://taolvezh.cn/华南理工大学2018届推免数据分析.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>使用matplotlib和pandas对华南理工大学2018届以及近三年推免数据进行分析 | Taolvezh</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8b0bc436841c64795f1e58c90cb629c2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Taolvezh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">深自缄默 如云漂泊.</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://taolvezh.cn/华南理工大学2018届推免数据分析.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JohnAlex">
+      <meta itemprop="description" content="Stay hungry,Stay foolish.">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Taolvezh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用matplotlib和pandas对华南理工大学2018届以及近三年推免数据进行分析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-02 10:07:42" itemprop="dateCreated datePublished" datetime="2018-09-02T10:07:42+08:00">2018-09-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-09-03 12:22:02" itemprop="dateModified" datetime="2018-09-03T12:22:02+08:00">2018-09-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&emsp;&emsp;使用matplotlib和pandas对2018届以及近三年SCUT的推免数据进行简单分析，希望对了解华工今年推免数据和学习matplotlib的同学有所帮助。<br>&emsp;&emsp;如有不足，尽请指出。<br><a id="more"></a></p>
+<h1 id="2018届SCUT推免生统计"><a href="#2018届SCUT推免生统计" class="headerlink" title="2018届SCUT推免生统计"></a>2018届SCUT推免生统计</h1><h2 id="整体概览"><a href="#整体概览" class="headerlink" title="整体概览"></a>整体概览</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>首先导入需要的第三方库<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span>  cm</span><br><span class="line">plt.rcParams[<span class="string">'font.sans-serif'</span>]=[<span class="string">'SimHei'</span>] <span class="comment">#用来正常显示中文标签</span></span><br><span class="line">plt.rcParams[<span class="string">'axes.unicode_minus'</span>]=<span class="keyword">False</span> <span class="comment">#用来正常显示负号</span></span><br></pre></td></tr></table></figure></p>
+<p>读取数据文件，并且查看主要信息<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data = pd.read_csv(<span class="string">r'..\Desktop\data_scut\2018.csv'</span>)</span><br><span class="line">data.describe()</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://ov9vevhfj.bkt.clouddn.com/2018datadescribe.png" alt="简略信息"></p>
+<h3 id="推免生本科学校分布"><a href="#推免生本科学校分布" class="headerlink" title="推免生本科学校分布"></a>推免生本科学校分布</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#获得每个本科学校人数</span></span><br><span class="line">data_bachelor_bigger_10 =data[<span class="string">'本科学校'</span>].value_counts()</span><br></pre></td></tr></table></figure>
+<p><img src="http://ov9vevhfj.bkt.clouddn.com/2018data_school.png" alt=""><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取生源前10的高校列表和人数</span></span><br><span class="line">school_list = data_bachelor_bigger_10.keys().tolist()[<span class="number">0</span>:<span class="number">9</span>]+[<span class="string">'其他'</span>] </span><br><span class="line">other_count=other_count=data_bachelor_bigger_10[<span class="number">9</span>:].sum()</span><br><span class="line">students_count_list = data_bachelor_bigger_10.values.tolist()[<span class="number">0</span>:<span class="number">9</span>]+[other_count]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制饼图</span></span><br><span class="line">plt.figure(figsize = (<span class="number">12</span>, <span class="number">12</span>))</span><br><span class="line">explode = (<span class="number">0.05</span>,<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">plt.pie(students_count_list,labels=school_list,startangle=<span class="number">90</span>,shadow=<span class="keyword">True</span>,autopct=<span class="string">'%1.2f%%'</span>)</span><br><span class="line">plt.title(<span class="string">'华南理工大学2018届推免生本科学校分布'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://ov9vevhfj.bkt.clouddn.com/2018datatotalbar.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 绘制条形图</span><br><span class="line">plt.figure(figsize = (12, 12))</span><br><span class="line">x_ = range(len(school_list))</span><br><span class="line">rect = plt.bar(x=x_,height = students_count_list,width=0.4)</span><br><span class="line">for rec in rect:</span><br><span class="line">    x=rec.get_x()</span><br><span class="line">    height=rec.get_height()</span><br><span class="line">    plt.text(x+0.1,1.02*height,str(height))</span><br><span class="line"></span><br><span class="line">plt.xticks([i+0.2 for i in x_],school_list)</span><br><span class="line">plt.title(&apos;华南理工大学2018届推免生本科学校分布&apos;)</span><br><span class="line">plt.ylim(0,800)</span><br><span class="line">plt.ylabel(&apos;数量&apos;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://ov9vevhfj.bkt.clouddn.com/2018datatotalpie.png" alt=""></p>
+<h3 id="分学院录取推免生数量"><a href="#分学院录取推免生数量" class="headerlink" title="分学院录取推免生数量"></a>分学院录取推免生数量</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">data_institute = data[<span class="string">'录取学院名称'</span>].value_counts()</span><br><span class="line"></span><br><span class="line">plt.figure(figsize = (<span class="number">13</span>, <span class="number">13</span>))</span><br><span class="line">num_institute = len(data_institute)</span><br><span class="line">plt.barh([i <span class="keyword">for</span> i <span class="keyword">in</span> range(num_institute)],data_institute.values)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plt.yticks([i <span class="keyword">for</span> i <span class="keyword">in</span> range(num_institute)],data_institute.keys(),fontsize=<span class="number">15</span>)</span><br><span class="line">plt.xlim(<span class="number">0</span>,<span class="number">150</span>)</span><br><span class="line">plt.xlabel(<span class="string">'人数'</span>,fontsize=<span class="number">20</span>)</span><br><span class="line">plt.title(<span class="string">'华南理工大学2018届推免生录取学院排行'</span>,fontsize=<span class="number">20</span>)</span><br><span class="line"><span class="keyword">for</span> x, y <span class="keyword">in</span> enumerate(data_institute):</span><br><span class="line">    plt.text(y + <span class="number">0.2</span>, x - <span class="number">0.1</span>, <span class="string">'%s'</span> % y,fontsize=<span class="number">20</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://ov9vevhfj.bkt.clouddn.com/2018data_institute_stu_num.png" alt=""></p>
+<h3 id="分学院录取推免生外校学生比例"><a href="#分学院录取推免生外校学生比例" class="headerlink" title="分学院录取推免生外校学生比例"></a>分学院录取推免生外校学生比例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">institute_list=data[<span class="string">'录取学院名称'</span>].value_counts().keys()</span><br><span class="line"><span class="comment"># 计算外校学生占比</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calculate_radio</span><span class="params">(institute_name_list)</span>:</span></span><br><span class="line">    radio_dict=&#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(institute_name_list)):</span><br><span class="line">        data_this_institute = data[data[<span class="string">'录取学院名称'</span>]==institute_name_list[i]]</span><br><span class="line">        data_this_institute_SCUT=data_this_institute[data_this_institute[<span class="string">'本科学校'</span>]==<span class="string">'华南理工大学'</span>]</span><br><span class="line">        radio_dict[institute_name_list[i]]=(<span class="number">1.0</span>-len(data_this_institute_SCUT)/len(data_this_institute))*<span class="number">100</span></span><br><span class="line">    <span class="keyword">return</span> radio_dict</span><br><span class="line"></span><br><span class="line">dic = calculate_radio(institute_list)</span><br><span class="line">dic = dict(sorted(dic.items(), key=<span class="keyword">lambda</span> d: d[<span class="number">1</span>]))</span><br><span class="line"><span class="comment"># 制图</span></span><br><span class="line">plt.figure(figsize = (<span class="number">13</span>, <span class="number">13</span>))</span><br><span class="line">num_institute = len(institute_list)</span><br><span class="line">rect1 = plt.barh([i <span class="keyword">for</span> i <span class="keyword">in</span> range(num_institute)],list(dic.values()))</span><br><span class="line">plt.yticks([i <span class="keyword">for</span> i <span class="keyword">in</span> range(num_institute)],list(dic.keys()),fontsize=<span class="number">15</span>)</span><br><span class="line">plt.xlim(<span class="number">0</span>,<span class="number">100</span>)</span><br><span class="line">plt.xlabel(<span class="string">'外校生源比率%'</span>,fontsize=<span class="number">20</span>)</span><br><span class="line">plt.title(<span class="string">'华南理工大学2018届推免生外校学生占比'</span>,fontsize=<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x, y <span class="keyword">in</span> enumerate(list(dic.values())):</span><br><span class="line">    plt.text(y + <span class="number">0.2</span>, x - <span class="number">0.1</span>, <span class="string">'%1.2f%%'</span> % y,fontsize=<span class="number">20</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://ov9vevhfj.bkt.clouddn.com/2018data_institute_stu_radio.png" alt=""></p>
+<h2 id="计算机学院推免统计"><a href="#计算机学院推免统计" class="headerlink" title="计算机学院推免统计"></a>计算机学院推免统计</h2><h3 id="准备工作-1"><a href="#准备工作-1" class="headerlink" title="准备工作"></a>准备工作</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">data_cs=data[data[<span class="string">'录取学院名称'</span>]==<span class="string">"008计算机科学与工程学院"</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#获取数量前10位的本科学校列表以及学生数量</span></span><br><span class="line">data_cs_bigger_10 =data_cs[<span class="string">'本科学校'</span>].value_counts()</span><br><span class="line">school_list = data_cs_bigger_10.keys().tolist()[<span class="number">0</span>:<span class="number">9</span>]+[<span class="string">'其他'</span>]</span><br><span class="line">other_count=data_cs_bigger_10[<span class="number">9</span>:].sum()</span><br><span class="line">students_count_list = data_cs_bigger_10.values.tolist()[<span class="number">0</span>:<span class="number">9</span>]+[other_count]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取计算机学院学院录取的专业名称以及学生数量</span></span><br><span class="line">data_cs_major=data_cs[<span class="string">'录取专业名称'</span>]</span><br><span class="line">major_list = data_cs_major.value_counts().keys().tolist()</span><br><span class="line">major_num_list=data_cs_major.value_counts().values.tolist()</span><br></pre></td></tr></table></figure>
+<h3 id="计算机学院2018届推免录取专业分布"><a href="#计算机学院2018届推免录取专业分布" class="headerlink" title="计算机学院2018届推免录取专业分布"></a>计算机学院2018届推免录取专业分布</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 绘制饼图</span></span><br><span class="line">plt.figure(figsize = (<span class="number">10</span>, <span class="number">10</span>))</span><br><span class="line">plt.pie(major_num_list,labels=major_list,startangle=<span class="number">90</span>,shadow=<span class="keyword">True</span>,autopct=<span class="string">'%1.2f%%'</span>)</span><br><span class="line">plt.title(<span class="string">'华南理工大学计算机学院2018届推免录取专业分布'</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制条形图</span></span><br><span class="line">plt.figure(figsize = (<span class="number">8</span>, <span class="number">8</span>))</span><br><span class="line">x_ = range(len(major_list))</span><br><span class="line">rect = plt.bar(x=x_,height = major_num_list,width=<span class="number">0.4</span>)</span><br><span class="line"><span class="keyword">for</span> rec <span class="keyword">in</span> rect:</span><br><span class="line">    x=rec.get_x()</span><br><span class="line">    height=rec.get_height()</span><br><span class="line">    plt.text(x+<span class="number">0.1</span>,<span class="number">1.02</span>*height,str(height))</span><br><span class="line"></span><br><span class="line">plt.xticks([i <span class="keyword">for</span> i <span class="keyword">in</span> x_],major_list)</span><br><span class="line">plt.title(<span class="string">'华南理工大学2018届计算机学院推免录取专业分布'</span>)</span><br><span class="line">plt.ylim(<span class="number">0</span>,<span class="number">70</span>)</span><br><span class="line">plt.ylabel(<span class="string">'数量'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://ov9vevhfj.bkt.clouddn.com/2018datacspie.png" alt=""><br><img src="http://ov9vevhfj.bkt.clouddn.com/2018datacsbar.png" alt=""></p>
+<h3 id="计算机学院2018届推免本科院校分布"><a href="#计算机学院2018届推免本科院校分布" class="headerlink" title="计算机学院2018届推免本科院校分布"></a>计算机学院2018届推免本科院校分布</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize = (<span class="number">13</span>, <span class="number">13</span>))</span><br><span class="line"></span><br><span class="line">num_school = len( data_cs_bigger_10)</span><br><span class="line">plt.barh(range(num_school),data_cs_bigger_10.values)</span><br><span class="line">plt.yticks(range(num_school),data_cs_bigger_10.keys())</span><br><span class="line">plt.xlim(<span class="number">0</span>,<span class="number">70</span>)</span><br><span class="line">plt.xlabel(<span class="string">'人数'</span>)</span><br><span class="line">plt.title(<span class="string">'华南理工大学2018届计算机学院推免生本科学校分布'</span>)</span><br><span class="line"><span class="keyword">for</span> x, y <span class="keyword">in</span> enumerate(data_cs_bigger_10.values.tolist()):</span><br><span class="line">    plt.text(y + <span class="number">0.2</span>, x - <span class="number">0.1</span>, <span class="string">'%s'</span> % y)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://ov9vevhfj.bkt.clouddn.com/2018datacs_stupie.png" alt=""><br>由此可见，SCUT计算机学院推免时偏爱招收本校学生，若有意保研至SCUT的同学应该更早地做好准备，</p>
+<h1 id="2016—2018-SCUT推免数据简略分析"><a href="#2016—2018-SCUT推免数据简略分析" class="headerlink" title="2016—2018 SCUT推免数据简略分析"></a>2016—2018 SCUT推免数据简略分析</h1><h2 id="数据概览"><a href="#数据概览" class="headerlink" title="数据概览"></a>数据概览</h2><h3 id="准备工作-2"><a href="#准备工作-2" class="headerlink" title="准备工作"></a>准备工作</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span>  cm</span><br><span class="line">plt.rcParams[<span class="string">'font.sans-serif'</span>]=[<span class="string">'SimHei'</span>] <span class="comment">#用来正常显示中文标签</span></span><br><span class="line">plt.rcParams[<span class="string">'axes.unicode_minus'</span>]=<span class="keyword">False</span> <span class="comment">#用来正常显示负号</span></span><br><span class="line">data2018 = pd.read_csv(<span class="string">r'\data_scut\2018.csv'</span>)</span><br><span class="line">data2017 = pd.read_csv(<span class="string">r'\data_scut\2017.csv'</span>)</span><br><span class="line">data2016 = pd.read_csv(<span class="string">r'\data_scut\2016.csv'</span>)</span><br><span class="line"></span><br><span class="line">d2016=data2016[<span class="string">'毕业学校'</span>].value_counts()</span><br><span class="line">d2017=data2017[<span class="string">'毕业学校'</span>].value_counts()</span><br><span class="line">d2018=data2018[<span class="string">'本科学校'</span>].value_counts()</span><br><span class="line"></span><br><span class="line"><span class="comment">#分别获取每年的本校学生数量，外校学生数量，总学生数量，构成三个列表,例this_list=[2016_num,2017_num,2018_num]</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">student_source_list</span><span class="params">(data_list)</span>:</span></span><br><span class="line">    this_list=[]</span><br><span class="line">    other_list=[]</span><br><span class="line">    total_list=[]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(data_list)):</span><br><span class="line">        this =  data_list[i].values[<span class="number">0</span>]</span><br><span class="line">        other =  data_list[i].values[<span class="number">1</span>:].sum()</span><br><span class="line">        this_list+=[int(this)]</span><br><span class="line">        other_list+=[int(other)]</span><br><span class="line">        total_list+=[int(this+other)]</span><br><span class="line">    <span class="keyword">return</span> this_list,other_list,total_list</span><br></pre></td></tr></table></figure>
+<h3 id="数据概览-1"><a href="#数据概览-1" class="headerlink" title="数据概览"></a>数据概览</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data2016.info()</span><br></pre></td></tr></table></figure>
+<p><img src="http://ov9vevhfj.bkt.clouddn.com/20162018datadescribe.png" alt=""></p>
+<h2 id="华南理工大学2016-2018推免统计"><a href="#华南理工大学2016-2018推免统计" class="headerlink" title="华南理工大学2016-2018推免统计"></a>华南理工大学2016-2018推免统计</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">year_list = [<span class="string">'2016'</span>,<span class="string">'2017'</span>,<span class="string">'2018'</span>]</span><br><span class="line">this_list,other_list,total_list=student_source_list([d2016,d2017,d2018])</span><br><span class="line">x = range(len(year_list))</span><br><span class="line">plt.figure(figsize=(<span class="number">15</span>,<span class="number">15</span>))</span><br><span class="line"></span><br><span class="line">rect1 = plt.bar(x=[i+<span class="number">0.4</span> <span class="keyword">for</span> i <span class="keyword">in</span> x],height=this_list,width=<span class="number">0.2</span>,label=<span class="string">"本校"</span>)</span><br><span class="line">rect2 = plt.bar(x=[i+<span class="number">0.6</span> <span class="keyword">for</span> i <span class="keyword">in</span> x],height=other_list,width=<span class="number">0.2</span>,label=<span class="string">"外校"</span>)</span><br><span class="line">rect3 = plt.bar(x=[i+<span class="number">0.8</span> <span class="keyword">for</span> i <span class="keyword">in</span> x],height=total_list,width=<span class="number">0.2</span>,label=<span class="string">"合计"</span>)</span><br><span class="line">plt.ylim(<span class="number">0</span>,<span class="number">2000</span>)</span><br><span class="line">plt.ylabel(<span class="string">"人数"</span>,fontsize=<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line">plt.xticks([i+<span class="number">0.6</span> <span class="keyword">for</span> i <span class="keyword">in</span> x],year_list,fontsize=<span class="number">20</span>)</span><br><span class="line">plt.xlabel(<span class="string">"年份"</span>,fontsize=<span class="number">20</span>)</span><br><span class="line">plt.title(<span class="string">"华南理工大学2016-2018推免统计"</span>,fontsize=<span class="number">20</span>)</span><br><span class="line">plt.legend(fontsize=<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> rect <span class="keyword">in</span> rect1:</span><br><span class="line">    height = rect.get_height()</span><br><span class="line">    plt.text(rect.get_x() + rect.get_width() / <span class="number">2</span>, height+<span class="number">1</span>, str(height), ha=<span class="string">"center"</span>, va=<span class="string">"bottom"</span>,fontsize=<span class="number">20</span>)</span><br><span class="line"><span class="keyword">for</span> rect <span class="keyword">in</span> rect2:</span><br><span class="line">    height = rect.get_height()</span><br><span class="line">    plt.text(rect.get_x() + rect.get_width() / <span class="number">2</span>, height+<span class="number">1</span>, str(height), ha=<span class="string">"center"</span>, va=<span class="string">"bottom"</span>,fontsize=<span class="number">20</span>)</span><br><span class="line"><span class="keyword">for</span> rect <span class="keyword">in</span> rect3:</span><br><span class="line">    height = rect.get_height()</span><br><span class="line">    plt.text(rect.get_x() + rect.get_width() / <span class="number">2</span>, height+<span class="number">1</span>, str(height), ha=<span class="string">"center"</span>, va=<span class="string">"bottom"</span>,fontsize=<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://ov9vevhfj.bkt.clouddn.com/20162018datatotal.png" alt=""></p>
+<h2 id="华南理工大学计算机学院2016-2018推免统计"><a href="#华南理工大学计算机学院2016-2018推免统计" class="headerlink" title="华南理工大学计算机学院2016-2018推免统计"></a>华南理工大学计算机学院2016-2018推免统计</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">d2016_CS=data2016[data2016[<span class="string">'录取学院'</span>]==<span class="string">'008计算机科学与工程学院'</span>][<span class="string">'毕业学校'</span>].value_counts()</span><br><span class="line">d2017_CS=data2017[data2017[<span class="string">'录取学院'</span>]==<span class="string">'008计算机科学与工程学院'</span>][<span class="string">'毕业学校'</span>].value_counts()</span><br><span class="line">d2018_CS=data2018[data2018[<span class="string">'录取学院名称'</span>]==<span class="string">'008计算机科学与工程学院'</span>][<span class="string">'本科学校'</span>].value_counts()</span><br><span class="line"></span><br><span class="line">year_list = [<span class="string">'2016'</span>,<span class="string">'2017'</span>,<span class="string">'2018'</span>]</span><br><span class="line">this_list_cs,other_list_cs,total_list_cs=student_source_list([d2016_CS,d2017_CS,d2018_CS])</span><br><span class="line">x = range(len(year_list))</span><br><span class="line">plt.figure(figsize=(<span class="number">15</span>,<span class="number">15</span>))</span><br><span class="line"></span><br><span class="line">rect1 = plt.bar(x=[i+<span class="number">0.4</span> <span class="keyword">for</span> i <span class="keyword">in</span> x],height=this_list_cs,width=<span class="number">0.2</span>,label=<span class="string">"本校"</span>)</span><br><span class="line">rect2 = plt.bar(x=[i+<span class="number">0.6</span> <span class="keyword">for</span> i <span class="keyword">in</span> x],height=other_list_cs,width=<span class="number">0.2</span>,label=<span class="string">"外校"</span>)</span><br><span class="line">rect3 = plt.bar(x=[i+<span class="number">0.8</span> <span class="keyword">for</span> i <span class="keyword">in</span> x],height=total_list_cs,width=<span class="number">0.2</span>,label=<span class="string">"合计"</span>)</span><br><span class="line">plt.ylim(<span class="number">0</span>,<span class="number">150</span>)</span><br><span class="line">plt.ylabel(<span class="string">"人数"</span>,fontsize=<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line">plt.xticks([i+<span class="number">0.6</span> <span class="keyword">for</span> i <span class="keyword">in</span> x],year_list,fontsize=<span class="number">20</span>)</span><br><span class="line">plt.xlabel(<span class="string">"年份"</span>,fontsize=<span class="number">20</span>)</span><br><span class="line">plt.title(<span class="string">"华南理工大学计算机学院2016-2018推免人数统计"</span>,fontsize=<span class="number">20</span>)</span><br><span class="line">plt.legend(fontsize=<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> rect <span class="keyword">in</span> rect1:</span><br><span class="line">    height = rect.get_height()</span><br><span class="line">    plt.text(rect.get_x() + rect.get_width() / <span class="number">2</span>, height+<span class="number">1</span>, str(height), ha=<span class="string">"center"</span>, va=<span class="string">"bottom"</span>,fontsize=<span class="number">20</span>)</span><br><span class="line"><span class="keyword">for</span> rect <span class="keyword">in</span> rect2:</span><br><span class="line">    height = rect.get_height()</span><br><span class="line">    plt.text(rect.get_x() + rect.get_width() / <span class="number">2</span>, height+<span class="number">1</span>, str(height), ha=<span class="string">"center"</span>, va=<span class="string">"bottom"</span>,fontsize=<span class="number">20</span>)</span><br><span class="line"><span class="keyword">for</span> rect <span class="keyword">in</span> rect3:</span><br><span class="line">    height = rect.get_height()</span><br><span class="line">    plt.text(rect.get_x() + rect.get_width() / <span class="number">2</span>, height+<span class="number">1</span>, str(height), ha=<span class="string">"center"</span>, va=<span class="string">"bottom"</span>,fontsize=<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://ov9vevhfj.bkt.clouddn.com/20162018datacstotal.png" alt=""></p>
+<p>以上只对2016—2018数据进行了简要分析，未完待续。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="JohnAlex 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据分析/" rel="tag"># 数据分析</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/残差网络论文阅读笔记.html" rel="next" title="残差网络论文阅读笔记(Deep Residual Learning for Image Recognition)">
+                <i class="fa fa-chevron-left"></i> 残差网络论文阅读笔记(Deep Residual Learning for Image Recognition)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTA5My8xNTYyMA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="JohnAlex" />
+            
+              <p class="site-author-name" itemprop="name">JohnAlex</p>
+              <p class="site-description motion-element" itemprop="description">Stay hungry,Stay foolish.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2018届SCUT推免生统计"><span class="nav-number">1.</span> <span class="nav-text">2018届SCUT推免生统计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#整体概览"><span class="nav-number">1.1.</span> <span class="nav-text">整体概览</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">1.1.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推免生本科学校分布"><span class="nav-number">1.1.2.</span> <span class="nav-text">推免生本科学校分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分学院录取推免生数量"><span class="nav-number">1.1.3.</span> <span class="nav-text">分学院录取推免生数量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分学院录取推免生外校学生比例"><span class="nav-number">1.1.4.</span> <span class="nav-text">分学院录取推免生外校学生比例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机学院推免统计"><span class="nav-number">1.2.</span> <span class="nav-text">计算机学院推免统计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机学院2018届推免录取专业分布"><span class="nav-number">1.2.2.</span> <span class="nav-text">计算机学院2018届推免录取专业分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机学院2018届推免本科院校分布"><span class="nav-number">1.2.3.</span> <span class="nav-text">计算机学院2018届推免本科院校分布</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2016—2018-SCUT推免数据简略分析"><span class="nav-number">2.</span> <span class="nav-text">2016—2018 SCUT推免数据简略分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据概览"><span class="nav-number">2.1.</span> <span class="nav-text">数据概览</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作-2"><span class="nav-number">2.1.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据概览-1"><span class="nav-number">2.1.2.</span> <span class="nav-text">数据概览</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#华南理工大学2016-2018推免统计"><span class="nav-number">2.2.</span> <span class="nav-text">华南理工大学2016-2018推免统计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#华南理工大学计算机学院2016-2018推免统计"><span class="nav-number">2.3.</span> <span class="nav-text">华南理工大学计算机学院2016-2018推免统计</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JohnAlex</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -116,13 +116,10 @@
 <meta property="og:site_name" content="Taolvezh">
 <meta property="og:description" content="推箱子是一个很经典的游戏.今天我们来玩一个简单版本.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://img.blog.csdn.net/20151211100807926">
-<meta property="og:image" content="http://i1.piimg.com/567571/957f6c1be4939c3c.png">
 <meta property="og:updated_time" content="2017-05-14T09:15:29.523Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HDU 1254 推箱子">
 <meta name="twitter:description" content="推箱子是一个很经典的游戏.今天我们来玩一个简单版本.">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20151211100807926">
 
 
 
@@ -446,7 +443,9 @@
 <h3 id="推箱子"><a href="#推箱子" class="headerlink" title="推箱子"></a>推箱子</h3><p>Time Limit: 2000/1000 MS (Java/Others)<br>Memory Limit: 65536/32768 K (Java/Others)</p>
 <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>在一个M*N的房间里有一个箱子和一个搬运工,搬运工的工作就是把箱子推到指定的位置,注意,搬运工只能推箱子而不能拉箱子,因此如果箱子被推到一个角上(如图2)那么箱子就不能再被移动了,如果箱子被推到一面墙上,那么箱子只能沿着墙移动.</p>
 <p>现在给定房间的结构,箱子的位置,搬运工的位置和箱子要被推去的位置,请你计算出搬运工至少要推动箱子多少格.</p>
-<div align="center"><br><img src="http://img.blog.csdn.net/20151211100807926" alt="enter description here"><br></div>
+<div align="center">
+![enter description here][1]
+</div>
 
 <p>Sample Input<br>1<br>5 5<br>0 3 0 0 0<br>1 0 1 4 0<br>0 0 1 0 0<br>1 0 2 0 0<br>0 0 0 0 0</p>
 <p>Sample Output<br>4</p>
@@ -467,7 +466,9 @@
 <h4 id="判断人是否可以到达箱子所在的点（深度优先搜索）"><a href="#判断人是否可以到达箱子所在的点（深度优先搜索）" class="headerlink" title="判断人是否可以到达箱子所在的点（深度优先搜索）"></a>判断人是否可以到达箱子所在的点（深度优先搜索）</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x_man,<span class="keyword">int</span> y_man,<span class="keyword">int</span> x_box,<span class="keyword">int</span> y_box)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (x_man == x_box&amp;&amp;y_man == y_box)&#123;</span><br><span class="line">		can_arrive = <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;<span class="comment">//两个点重合表示人可以到达箱子所在的点，标记can_arrive为true。</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span> &amp;&amp; !can_arrive; i++)&#123;<span class="comment">//逐方向搜索人是否可以到达箱子所在的点</span></span><br><span class="line">		<span class="keyword">int</span> cur_x = x_man + direction[i][<span class="number">0</span>];</span><br><span class="line">		<span class="keyword">int</span> cur_y = y_man + direction[i][<span class="number">1</span>];</span><br><span class="line">		<span class="keyword">if</span> (is_ok(cur_x, cur_y) &amp;&amp; flag[cur_x][cur_y] == <span class="number">0</span>)&#123;</span><br><span class="line">			flag[cur_x][cur_y] = <span class="number">1</span>;<span class="comment">//去过的位置标记为1</span></span><br><span class="line">			dfs(cur_x, cur_y, x_box, y_box);<span class="comment">//继续dfs</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="判断箱子是否可以到达目标点（广度优先搜索）"><a href="#判断箱子是否可以到达目标点（广度优先搜索）" class="headerlink" title="判断箱子是否可以到达目标点（广度优先搜索）"></a>判断箱子是否可以到达目标点（广度优先搜索）</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">queue</span>&lt;node&gt; q;<span class="comment">//为bfs建立一个队列</span></span><br><span class="line">	<span class="keyword">while</span> (!q.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		q.pop();<span class="comment">//清空队列</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> man_stepto_x, man_stepto_y;</span><br><span class="line">	n1.box_x = start_box_x;</span><br><span class="line">	n1.box_y = start_box_y;</span><br><span class="line">	n1.man_x = start_man_x;</span><br><span class="line">	n1.man_y = start_man_y;</span><br><span class="line">	n1.cnt_step=<span class="number">0</span>;<span class="comment">//将初始态赋给n1</span></span><br><span class="line">	mark[start_man_x][start_man_y][start_box_x][start_box_y] = <span class="number">1</span>;<span class="comment">//标记此时的状态</span></span><br><span class="line">	q.push(n1);</span><br><span class="line">	<span class="keyword">while</span> (!q.empty())&#123;</span><br><span class="line">		n1 = q.front();</span><br><span class="line">		q.pop();</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">map</span>[n1.box_x][n1.box_y] == TERMINAL)&#123;<span class="comment">//若n1此时箱子已经达到终点，输出结果</span></span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; n1.cnt_step &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)&#123;</span><br><span class="line">			n2.box_x = n1.box_x + direction[i][<span class="number">0</span>];</span><br><span class="line">			n2.box_y = n1.box_y + direction[i][<span class="number">1</span>];</span><br><span class="line">			man_stepto_x = n1.box_x - direction[i][<span class="number">0</span>];</span><br><span class="line">			man_stepto_y = n1.box_y - direction[i][<span class="number">1</span>];</span><br><span class="line">			<span class="keyword">if</span> (is_ok(n2.box_x, n2.box_y) &amp;&amp; is_ok(man_stepto_x, man_stepto_y) &amp;&amp; </span><br><span class="line">				!mark[man_stepto_x][man_stepto_y][n2.box_x][n2.box_y])&#123;</span><br><span class="line">				<span class="built_in">memset</span>(flag, <span class="number">0</span>, <span class="keyword">sizeof</span>(flag));</span><br><span class="line">				flag[man_stepto_x][man_stepto_y] = <span class="number">1</span>;</span><br><span class="line">				flag[n1.box_x][n1.box_y] = <span class="number">1</span>;</span><br><span class="line">				can_arrive = <span class="number">0</span>;</span><br><span class="line">				dfs(man_stepto_x, man_stepto_y, n1.man_x, n1.man_y);</span><br><span class="line">				<span class="keyword">if</span> (can_arrive)&#123;</span><br><span class="line">					mark[man_stepto_x][man_stepto_y][n2.box_x][n2.box_y] = <span class="number">1</span>;</span><br><span class="line">					n2.man_x = man_stepto_x;</span><br><span class="line">					n2.man_y = man_stepto_y;</span><br><span class="line">					n2.cnt_step = n1.cnt_step + <span class="number">1</span>;</span><br><span class="line">					q.push(n2);</span><br><span class="line">				&#125;<span class="comment">//如果dfs后可以到达（can_arrive==true），n2入列，继续bfs</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"-1"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>n1,n2,man_stepto的状态如图所示：</p>
-<div align="center"><br><img src="http://i1.piimg.com/567571/957f6c1be4939c3c.png" alt="enter description here"><br></div>
+<div align="center">
+![enter description here][2]
+</div>
 
 <h4 id="主函数"><a href="#主函数" class="headerlink" title="主函数"></a>主函数</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; T;</span><br><span class="line">	<span class="keyword">while</span> (T--)&#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; rows &gt;&gt; cols;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; rows; i++)</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; cols; j++)&#123;</span><br><span class="line">			<span class="built_in">cin</span> &gt;&gt; <span class="built_in">map</span>[i][j];</span><br><span class="line">			<span class="built_in">memset</span>(mark,<span class="number">0</span>,<span class="keyword">sizeof</span>(mark));</span><br><span class="line">			<span class="keyword">if</span> (<span class="built_in">map</span>[i][j] == BOX_START_POINT)&#123;</span><br><span class="line">				start_box_x = i;</span><br><span class="line">				start_box_y = j;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (<span class="built_in">map</span>[i][j] == MAN_START_POINT)&#123;</span><br><span class="line">				start_man_x = i;</span><br><span class="line">				start_man_y = j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		bfs();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -624,7 +625,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -684,7 +685,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">15</span>
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -950,6 +953,13 @@
 
 
   
+  
+
+  
+  
+
+  
+
 
   
   
